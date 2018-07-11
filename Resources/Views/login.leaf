@@ -1,0 +1,10 @@
+#embed("header")
+<body>
+<h1>Login</h1>
+<form action="/login" method="post" name="login">
+<input name="username" type="input"><br>
+<input name="password" type="password"><br>
+<input value="submit" type="submit">
+</form>
+</body
+<html>

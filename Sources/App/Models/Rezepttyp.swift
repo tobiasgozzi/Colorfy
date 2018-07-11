@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum Rezepttyp : Int {
+    case normal = 0,
+    kundenrezept
+}

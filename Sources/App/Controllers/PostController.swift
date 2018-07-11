@@ -7,7 +7,7 @@ final class PostController: ResourceRepresentable {
     /// When users call 'GET' on '/posts'
     /// it should return an index of all available posts
     func index(_ req: Request) throws -> ResponseRepresentable {
-        return try Post.all().makeJSON()
+        return try Benutzer.all().makeJSON()
     }
 
     /// When consumers call 'POST' on '/posts' with valid JSON
@@ -87,9 +87,9 @@ extension Request {
     /// Create a post from the JSON body
     /// return BadRequest error if invalid 
     /// or no JSON
-    func post() throws -> Post {
+    func post() throws -> Benutzer {
         guard let json = json else { throw Abort.badRequest }
-        return try Post(json: json)
+        return try Benutzer(json: json)
     }
 }
 

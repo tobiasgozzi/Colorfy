@@ -1,0 +1,25 @@
+#embed("header")
+<body>
+#embed("navHeader")
+<h1>Import</h1>
+<p>Import data into the databases.</p>
+<div>
+<form action="/importDatabase" enctype="multipart/form-data" method="POST" name="" id="database">
+<input name="recipeCollectionName" type="text" />
+<input type="file" name="myFile">
+
+<button type="submit" value="Submit">Submit</button>
+</form>
+</div>
+
+<h2>DB response:</h2>
+#(rezeptanzahl)
+
+<p id="placeHere"></p>
+
+<form action="/deleteDatabase" method="POST" name="" id="eraseDatabase"">
+<button type="submit" value="Submit">Canella ricette</button>
+</form>
+
+</body>
+</html>

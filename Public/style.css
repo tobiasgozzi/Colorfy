@@ -1,8 +1,37 @@
 
 .rTable { display: table; }
-.rTableRow { display: table-row; }
+.rTableRow {
+    display: table-row;
+}
 .rTableHeading { display: table-header-group; }
 .rTableBody { display: table-row-group; }
 .rTableFoot { display: table-footer-group; }
 .rTableCell,
-.rTableHead { display: table-cell; }
+.rTableHead { display: table-cell;
+    padding:5px;
+}
+
+
+body {
+    background-color: #F2F2F2;
+    font-family: "Verdana";
+    /*margin:0px;*/
+}
+
+nav {
+    position: fixed;
+    background-color: #50D0FE;
+    color: #F2F2F2;
+
+    top:0px;
+    left:0px;
+    right:0px;
+    
+    padding:10px;
+    margin:0px;
+    width: 100%;
+
+}
+#navSpacer {
+    margin-top:100px;
+}

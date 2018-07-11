@@ -1,0 +1,10 @@
+#embed("header")
+<body>
+    <h1>Sign Up</h1>
+    <form action="/signup" method="POST">
+        <input name="username" type="input" id="username"><br>
+        <input name="password" type="password" id="password"><br>
+        <input value="username" type="submit">
+    </form>
+</body
+<html>

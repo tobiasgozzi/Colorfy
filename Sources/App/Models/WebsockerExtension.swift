@@ -1,8 +1,8 @@
-//
-//  WebsockerExtension.swift
-//  App
-//
-//  Created by Tobias Gozzi on 28/05/2018.
-//
+import Vapor
 
-import Foundation
+extension WebSocket {
+    func send(_ json: JSON) throws {
+        let js = try json.makeBytes()
+        try send(js.makeString())
+    }
+}

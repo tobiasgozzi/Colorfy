@@ -1,0 +1,55 @@
+#embed("header")
+<body>
+#embed("navHeader")
+<h1>Ricerca ricette</h1>
+<h3>Inserisci una tinta:</h3>
+<div>
+    <form id="form">
+    <!--<form action="/searchRecipe" method="GET" name="" id="searchterm">-->
+        <input id="searchTermText" "type="text" />
+        <button type="submit" value="Submit">Submit</button>
+    </form>
+</div>
+
+<h2>Ricette trovate:</h2>
+<!-- <div class="rTable">
+    <div class="rTableRow">
+        <div class="rTableHead">
+            <strong>Tinta</strong>
+        </div>
+        <div class="rTableHead">
+            <span style="font-weight: bold;">Prodotto</span>
+        </div>
+        <div class="rTableHead">
+            <span style="font-weight: bold;">Colore</span>
+        </div>
+        <div class="rTableHead">
+            <span style="font-weight: bold;">Cliente</span>
+        </div>
+    </div>
+    <div class="rTableRow">
+        <div class="rTableCell">Ral 3003
+        </div>
+        <div class="rTableCell">
+            Bluefin Softmatt
+        </div> <div class="rTableCell">
+            Blu
+        </div>
+        <div class="rTableCell">
+            Mattioli
+        </div>
+
+    </div>
+</div>-->
+
+<p id="placeHere"></p>
+
+<p>logged in with username: #(benutzer.benutzerName)</p>
+<script src="recipeSearch.js"></script>
+<script>
+    var subApp = new RecipeFinder(window.location.host + "/updateRecipe");
+</script>
+
+
+</body>
+</html>

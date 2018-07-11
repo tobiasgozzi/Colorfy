@@ -1,0 +1,19 @@
+#embed("header")
+<body>
+#embed("navHeader")
+<h1>Dettaglio ricetta</h1>
+<h3>Ricetta </h3>
+<div id="insertHere"></div>
+
+
+#(recipe.farbnummer)
+#(recipe.anteile.count)
+<ul>
+
+#loop(anteile, "anteil") { <li>#(anteil.produkt) #(anteil.stringAnteil)</li> }
+</ul>
+
+
+</body>
+</html>
+
