@@ -3,10 +3,7 @@ import Vapor
 import FluentProvider
 import AuthProvider
 
-final class Benutzer : Model, JSONRepresentable {
-    func makeJSON() throws -> JSON {
-        <#code#>
-    }
+final class Benutzer : Model {
     
 //    - benutzerechte : BenutzerRechte
     var benutzerID : String
