@@ -8,10 +8,10 @@
 
 #(recipe.farbnummer)
 #(recipe.anteile.count)
-<ul>
 
-#loop(anteile, "anteil") { <li>#(anteil.produkt) #(anteil.stringAnteil)</li> }
-</ul>
+<div class="highlightBox">
+#loop(anteile, "anteil") { <div class="rTableRow"><div class="rTableCell">#(anteil.produkt)</div><div class="rTableCell"> #(anteil.stringAnteil)</div></div> }
+<div>
 
 
 </body>
