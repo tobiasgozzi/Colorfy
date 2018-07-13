@@ -40,27 +40,27 @@ let products : Dictionary<String, Dictionary<String, String>> = [
         "cost" : "8.31"
     ],
     "82063 Arancio Ch" : [
-        "name" : "AC 555 Arancio scuro",
+        "name" : "AC 063 Arancio chiaro",
         "price" : "14.32",
         "cost" : "8.31"
     ],
     "82504 Blu Verde" : [
-        "name" : "AC 555 Arancio scuro",
+        "name" : "AC 504 blu verde",
         "price" : "14.32",
         "cost" : "8.31"
     ],
     "82556 Blu Rosso" : [
-        "name" : "AC 555 Arancio scuro",
+        "name" : "AC 556 blu rosso",
         "price" : "14.32",
         "cost" : "8.31"
     ],
     "82507 Giallo Os." : [
-        "name" : "AC 555 Arancio scuro",
+        "name" : "AC 507 Giallo Ossido",
         "price" : "14.32",
         "cost" : "8.31"
     ],
     "82010 Giallo" : [
-        "name" : "AC 555 Arancio scuro",
+        "name" : "AC 010 Giallo",
         "price" : "14.32",
         "cost" : "8.31"
     ],
@@ -70,7 +70,7 @@ let products : Dictionary<String, Dictionary<String, String>> = [
         "cost" : "8.31"
     ],
     "82590 Magenta" : [
-        "name" : "AC 555 Arancio scuro",
+        "name" : "AC 590 Magenta",
         "price" : "14.32",
         "cost" : "8.31"
     ],

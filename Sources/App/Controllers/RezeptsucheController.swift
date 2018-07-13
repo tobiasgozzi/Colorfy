@@ -37,7 +37,7 @@ class RezeptsucheController {
     }
     
     func compareRecipeWithSearchphrase(input: String) -> String {
-        var JSONcontent = "<div class='rTable'><div class='rTableRow'><div class='rTableHead'><strong>Tinta</strong></div><div class='rTableHead'><span style='font-weight: bold;'>Prodotto</span></div><div class='rTableHead'><span style='font-weight: bold;'>Colore</span></div><div class='rTableHead'><span style='font-weight: bold;'>Cliente</span></div></div>"
+        var JSONcontent = "<div class='container'><div class='row'><div class='col'><span style='font-weight: bold;'>Tinta</span></div><div class='col'><span style='font-weight: bold;'>Prodotto</span></div><div class='col'><span style='font-weight: bold;'>Colore</span></div><div class='col'><span style='font-weight: bold;'>Cliente</span></div></div>"
 
         do {
             
@@ -72,7 +72,7 @@ class RezeptsucheController {
         
 //        generateRecipeHtmlSniplet(match: match)
         
-        JSONcontent.append((JSONcontent != "") ? "</div></div>" : "")
+        JSONcontent.append((JSONcontent != "") ? "</div>" : "")
         return JSONcontent != "" ? JSONcontent : "nothing found"
         
     }
@@ -120,23 +120,25 @@ class RezeptsucheController {
         }
         
         let linkHead = "<a href='recipe/\(match[4])'>"
-        let openTrHead = "<div class='rTableRow'"
+        let openTrHead = "<div class='row'"
         let openTrTail = ">"
         let closeTr = "</div>"
-        let openTd = "<div class='rTableCell'>"
+        let openTd = "<div class='col'>"
         let closeTd = "</div>"
         let linkTail = "</a>"
 
         var htmlLine = ""
 
-        htmlLine.append(linkHead + openTrHead + evenOrUneven(nr: currentItem) + openTrTail)
+        htmlLine.append(openTrHead + evenOrUneven(nr: currentItem) + openTrTail)
 
         for i in 0...4 {
+            htmlLine.append(linkHead)
             htmlLine.append(openTd)
             htmlLine.append(match[i])
             htmlLine.append(closeTd)
+            htmlLine.append(linkTail)
         }
-        htmlLine.append(closeTr + linkTail)
+        htmlLine.append(closeTr)
 
         return htmlLine
     }

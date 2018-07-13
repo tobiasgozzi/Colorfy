@@ -21,7 +21,7 @@ class Rohstoffanteil : Model {
     
     init(prod : Produkt, parts: Float, id : Identifier) {
         
-        self._produkt = prod.produktID
+        self._produkt = prod.name
         self._anteil = parts
         self._kosten = prod.kosten * parts
         self._vKPreis = prod.preis * parts

@@ -1,10 +1,16 @@
 #embed("header")
 <body>
-<h1>Login</h1>
-<form action="/login" method="post" name="login">
-<input name="username" type="input"><br>
-<input name="password" type="password"><br>
-<input value="submit" type="submit">
-</form>
-</body
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 align-items-center">
+            <h1 class="mx-auto">Login</h1>
+            <form action="/login" method="post" name="login">
+                <input name="username" type="input" class="form-control"><br>
+                <input name="password" type="password" class="form-control"><br>
+                <input value="Accedi" type="submit" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+</div>
+</body>
 <html>
