@@ -218,11 +218,11 @@ class ImportController {
 
                             for i in rohstoffanteile {
                                 let anteil = Rohstoffanteil(prod: i.key, parts: i.value, id: rezept.id!)
-//                                do {
-//                                    try anteil.save()
-//                                } catch let error as NodeError {
-//                                    print("\(error.debugDescription) \(error.printable) prevented to save rohstoffanteil")
-//                                }
+                                do {
+                                    try anteil.save()
+                                } catch let error as NodeError {
+                                    print("\(error.debugDescription) \(error.printable) prevented to save rohstoffanteil")
+                                }
                                 
                                 teile.append(anteil)
                             }
@@ -230,11 +230,11 @@ class ImportController {
                             rezept.setRohstoffanteile = teile
                         
                         
-//                            do {
-//                                try rezept.save()
-//                            } catch let err as NodeError {
-//                                print("\(err.debugDescription) \(err.printable) prevented to save recipe")
-//                            }
+                            do {
+                                try rezept.save()
+                            } catch let err as NodeError {
+                                print("\(err.debugDescription) \(err.printable) prevented to save recipe")
+                            }
                             
 
 //
