@@ -152,22 +152,24 @@ class ImportController {
 //                                    for leafValue in leafChildren {
 
                                         if let name = leaf.name, let val = leaf.stringValue {
-                                            print("\(name) \(val)")
+                                            print("\(leafindex) is current index")
                                             switch name {
+                                                
                                             case "codiceTinta":
                                                 tempFartonCodice = val
-
+                                                print("codice tinta \(val)")
                                                 break;
                                             case "codiceProdotto":
 
                                                 let nextSibling : Float = (leafes[leafindex + 1].child(at: 0)?.stringValue!.float!)!
-                                                
+                                                print("codice prodotto \(val)")
                                                 mainProduct = val
                                                 parts[mainProduct] = nextSibling
                                                 break;
                                             case "p1","p2","p3","p4","p5","p6":
+                                                print("P \(name) \(val)")
                                                 if val == "" || val == " " {
-                                                    break
+                                                    break;
                                                 }
                                                 let nextSibling : Float = (leafes[leafindex + 1].child(at: 0)?.stringValue!.float!)!
                                                 print("--- \(nextSibling)")
@@ -179,8 +181,6 @@ class ImportController {
                                                 
                                                 break;
                                             }
-
-                                            
                                         }
 //                                    }
 

@@ -46,7 +46,7 @@ extension Droplet {
         let redirect = RedirectMiddleware.login()
 
         
-        let loginRoute = grouped([sessionMW, persistMW/*, invRedirect*/])
+        let loginRoute = grouped([sessionMW, persistMW, invRedirect])
         
         //inverse Redirection from login for logged in users
 //        let group = self.grouped([invRedirect])
@@ -61,7 +61,7 @@ extension Droplet {
         
         let passwordMW = PasswordAuthenticationMiddleware(Benutzer.self)
         
-        let authRoute = grouped([sessionMW, persistMW, /*redirect,*/ passwordMW])
+        let authRoute = grouped([sessionMW, persistMW, redirect, passwordMW])
         
         authRoute.get("", handler: benutzerController.loadSecuredLogin)
         authRoute.get("main", handler: benutzerController.loadSecuredLogin)
