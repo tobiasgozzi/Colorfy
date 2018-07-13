@@ -131,13 +131,14 @@ class ImportController {
 
             if let root = xmlDoc.rootElement() {
                 if let rootChildren = root.children {
-
+                    
+                    print("\(root.childCount) \(rootChildren.count) is root count")
                     for recordNodes in rootChildren {
                         
                         
                         if let leafes = recordNodes.children {
                             
-                            
+                            print("\(leafes.count) is count of leafes")
                             var parts : Dictionary<String, Float> = [:]
                             var tempFartonCodice = ""
                             var tempProdukt = ""
@@ -146,12 +147,12 @@ class ImportController {
                             
                             for (leafindex, leaf) in leafes.enumerated() {
 
-                                if let leafChildren = leaf.children {
-                                    
-                                    for leafValue in leafChildren {
-                                        
-                                        if let name = leaf.name, let val = leafValue.stringValue {
-                                            
+//                                if let leafChildren = leaf.children {
+                                
+//                                    for leafValue in leafChildren {
+
+                                        if let name = leaf.name, let val = leaf.stringValue {
+                                            print("\(name) \(val)")
                                             switch name {
                                             case "codiceTinta":
                                                 tempFartonCodice = val
@@ -165,8 +166,12 @@ class ImportController {
                                                 parts[mainProduct] = nextSibling
                                                 break;
                                             case "p1","p2","p3","p4","p5","p6":
-                                                
+                                                if val == "" || val == " " {
+                                                    break
+                                                }
                                                 let nextSibling : Float = (leafes[leafindex + 1].child(at: 0)?.stringValue!.float!)!
+                                                print("--- \(nextSibling)")
+
                                                 tempProdukt = val
                                                 parts[tempProdukt] = nextSibling
                                                 break;
@@ -177,10 +182,10 @@ class ImportController {
 
                                             
                                         }
-                                    }
+//                                    }
 
                                     
-                                }
+//                                }
                                 
                             }
                             
@@ -213,11 +218,11 @@ class ImportController {
 
                             for i in rohstoffanteile {
                                 let anteil = Rohstoffanteil(prod: i.key, parts: i.value, id: rezept.id!)
-                                do {
-                                    try anteil.save()
-                                } catch let error as NodeError {
-                                    print("\(error.debugDescription) \(error.printable) prevented to save rohstoffanteil")
-                                }
+//                                do {
+//                                    try anteil.save()
+//                                } catch let error as NodeError {
+//                                    print("\(error.debugDescription) \(error.printable) prevented to save rohstoffanteil")
+//                                }
                                 
                                 teile.append(anteil)
                             }
@@ -225,11 +230,11 @@ class ImportController {
                             rezept.setRohstoffanteile = teile
                         
                         
-                            do {
-                                try rezept.save()
-                            } catch let err as NodeError {
-                                print("\(err.debugDescription) \(err.printable) prevented to save recipe")
-                            }
+//                            do {
+//                                try rezept.save()
+//                            } catch let err as NodeError {
+//                                print("\(err.debugDescription) \(err.printable) prevented to save recipe")
+//                            }
                             
 
 //
