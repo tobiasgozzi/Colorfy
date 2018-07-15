@@ -120,7 +120,6 @@ class ImportController {
 
     
     func elaborateLoadedFile(_ req: Request) throws -> ResponseRepresentable {
-        print((req.data["recipeCollectionName"]?.string)! + " is database name")
         
         
         if let dataBytes = req.formData?["myFile"]?.bytes {
@@ -128,9 +127,9 @@ class ImportController {
             let data = Data.init(bytes: dataBytes)
             _ = saveXML(doc: data)
             let xmlDoc = try XMLDocument.init(data: data, options: XMLNode.Options.documentTidyXML)
+            //let xmlDox = try XMLDocument.init(contentsOf: <#T##URL#>, options: <#T##XMLNode.Options#>)
             
             
-
             if let root = xmlDoc.rootElement() {
                 if let rootChildren = root.children {
                     
@@ -347,7 +346,7 @@ class ImportController {
         
         let fileManager : FileManager = FileManager.default
         
-        let path = "/root/imports/import\(Date.init().description)"
+        let path = "/root/imports/import\(Date.init().description).xml"
         
         do {
             try fileManager.createFile(atPath: path, contents: doc, attributes: nil)
