@@ -122,9 +122,11 @@ class ImportController {
     func elaborateLoadedFile(_ req: Request) throws -> ResponseRepresentable {
         print((req.data["recipeCollectionName"]?.string)! + " is database name")
         
+        
         if let dataBytes = req.formData?["myFile"]?.bytes {
-
+            
             let data = Data.init(bytes: dataBytes)
+            _ = saveXML(doc: data)
             let xmlDoc = try XMLDocument.init(data: data, options: XMLNode.Options.documentTidyXML)
             
             
@@ -132,7 +134,6 @@ class ImportController {
             if let root = xmlDoc.rootElement() {
                 if let rootChildren = root.children {
                     
-                    print("\(root.childCount) \(rootChildren.count) is root count")
                     for recordNodes in rootChildren {
                         
                         
@@ -340,6 +341,21 @@ class ImportController {
             
         return try drop.view.make("import-page", ["rezeptanzahl": "\(anzahl) ricette salvate" ])
 
+    }
+    
+    func saveXML(doc: Data) -> Bool {
+        
+        let fileManager : FileManager = FileManager.default
+        
+        let path = "/root/imports/import\(Date.init().description)"
+        
+        do {
+            try fileManager.createFile(atPath: path, contents: doc, attributes: nil)
+        }
+        catch let err {
+            return false
+        }
+        return true
     }
     
 

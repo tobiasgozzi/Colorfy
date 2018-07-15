@@ -15,7 +15,6 @@ let package = Package(
         .package(url: "https://github.com/vapor/leaf-provider.git", .upToNextMajor(from: "1.1.0")),
         .package(url: "https://github.com/vapor/mongo-provider.git", .upToNextMajor(from: "2.0.0")),
 
-
     ],
     targets: [
         .target(
