@@ -152,7 +152,7 @@ class ImportController {
 //                                    for leafValue in leafChildren {
 
                                         if let name = leaf.name, let val = leaf.stringValue {
-                                            print("\(leafindex) is current index")
+                                            print("\(leafindex) is current index with value \(name) and \(val)")
                                             switch name {
                                                 
                                             case "codiceTinta":
