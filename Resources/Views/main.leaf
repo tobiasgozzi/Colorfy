@@ -1,51 +1,22 @@
 #embed("header")
 <body>
 #embed("navHeader")
-<h1>Ricerca ricette</h1>
-<h3>Inserisci una tinta:</h3>
+<div class="container text-centered"><h1>Ricerca ricette</h1>
+<h4>Inserisci una tinta:</h4>
 <div>
     <form id="form">
     <!--<form action="/searchRecipe" method="POST" name="" id="searchterm">-->
-        <input id="searchTermText" type="text" />
-        <button type="submit" value="Submit">Submit</button>
+<input id="searchTermText" class="form-control" style="display:inline;width:70%;" "type="text" />
+        <button type="submit" class="btn btn-primary" value="Submit">Cerca</button>
     </form>
 </div>
 
-<h2>Ricette trovate:</h2>
-<!-- <div class="rTable">
-    <div class="rTableRow">
-        <div class="rTableHead">
-            <strong>Tinta</strong>
-        </div>
-        <div class="rTableHead">
-            <span style="font-weight: bold;">Prodotto</span>
-        </div>
-        <div class="rTableHead">
-            <span style="font-weight: bold;">Colore</span>
-        </div>
-        <div class="rTableHead">
-            <span style="font-weight: bold;">Cliente</span>
-        </div>
-    </div>
-    <div class="rTableRow">
-        <div class="rTableCell">Ral 3003
-        </div>
-        <div class="rTableCell">
-            Bluefin Softmatt
-        </div> <div class="rTableCell">
-            Blu
-        </div>
-        <div class="rTableCell">
-            Mattioli
-        </div>
-
-    </div>
-</div>-->
+<h4>#(titelRicettetrovate)</h4>
 
 <p>#(resultIE)</p>
 <p id="placeHere"></p>
-
-<p>Collegato con utenza #(benutzer.benutzerName) di livello #(benutzer.benutzerrechte)</p>
+</div>
+<footer class="footer"><div class="container"><span class="text-muted" style="overflow:scroll;">Collegato con utenza #(benutzer.benutzerName) di livello #(benutzer.benutzerrechte)</span></div></footer>
 <script src="recipeSearch.js"></script>
 <script>
 console.log(navigator.userAgent);

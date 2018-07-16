@@ -1,3 +1,7 @@
+@media (min-width: 576px) {
+    
+}
+
 
 .rTable { display: table; }
 .rTableRow {
@@ -30,7 +34,7 @@ nav {
     padding:10px;
     margin:0px;
     width: 100%;
-
+    z-index:100;
 }
 #navSpacer {
     margin-top:100px;
@@ -39,4 +43,12 @@ nav {
     margin-left:30px;
     background-color:#ffffff;
 
+}
+.footer {
+    position:fixed;
+    bottom:0;
+    width:100%;
+    height:40px;
+    line-height:40px;
+    background-color:white;
 }

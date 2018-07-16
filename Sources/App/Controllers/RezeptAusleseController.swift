@@ -24,7 +24,7 @@ class RezeptAusleseController {
         }
         guard let rezept = try Rezept.makeQuery().filter("rezeptID", rezeptString).first() else {
             print("recipe not found \(rezeptString)")
-            return try drop.view.make("recipe", ["recipe" : "nothig found"])
+            return try drop.view.make("recipe", ["recipe" : "nessun risultato"])
         }
         
         print(rezept.farbnummer)

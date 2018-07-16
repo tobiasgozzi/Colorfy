@@ -28,8 +28,9 @@ class RezeptsucheController {
         let answer = compareRecipeWithSearchphrase(input: (req.formURLEncoded?["searchTermText"]?.string)!)
         drop.log.info((req.auth.authenticated(Benutzer.self)?.benutzerID)!)
         drop.log.info((req.formURLEncoded?["searchTermText"]?.string)!)
-        return try drop.view.make("main", ["resultIE": answer])
-
+        print(try drop.view.make("main", ["resultIE": answer]).makeResponse().headers["Authorization"])
+        return try drop.view.make("main", ["resultIE": answer, "titelRicettetrovate" : "Ricette trovate"])
+        
     }
     
     func filterResults(){
@@ -47,7 +48,7 @@ class RezeptsucheController {
     }
     
     func compareRecipeWithSearchphrase(input: String) -> String {
-        var JSONcontent = "<div class='container'><div class='row'><div class='col'><span style='font-weight: bold;'>Tinta</span></div><div class='col'><span style='font-weight: bold;'>Prodotto</span></div><div class='col'><span style='font-weight: bold;'>Colore</span></div><div class='col'><span style='font-weight: bold;'>Cliente</span></div></div>"
+        var JSONcontent = "<div class='container' style='padding-bottom:50px;'><div class='row'><div class='col'><span style='font-weight: bold;'>Tinta</span></div><div class='col'><span style='font-weight: bold;'>Prodotto</span></div><div class='col'><span style='font-weight: bold;'>Colore</span></div><div class='col'><span style='font-weight: bold;'>Cliente</span></div></div>"
 
         do {
             
@@ -132,7 +133,7 @@ class RezeptsucheController {
         
         func evenOrUneven(nr : Int) -> String {
             if (nr % 2 != 0) {
-                return "style='background-color:grey;'"
+                return "style='background-color:#29D0FF;'"
             } else  {
                 return ""
             }
@@ -151,11 +152,21 @@ class RezeptsucheController {
         htmlLine.append(openTrHead + evenOrUneven(nr: currentItem) + openTrTail)
 
         for i in 0...3 {
-            htmlLine.append(linkHead)
+//            htmlLine.append(linkHead)
+//            htmlLine.append(openTd)
+//            htmlLine.append(match[i])
+//            htmlLine.append(closeTd)
+//            htmlLine.append(linkTail)
+            
             htmlLine.append(openTd)
+            htmlLine.append("<span>")
+            htmlLine.append(linkHead)
             htmlLine.append(match[i])
-            htmlLine.append(closeTd)
             htmlLine.append(linkTail)
+            htmlLine.append("</span>")
+            htmlLine.append(closeTd)
+
+            
         }
         htmlLine.append(closeTr)
 
