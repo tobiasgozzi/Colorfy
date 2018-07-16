@@ -6,7 +6,7 @@
 <div>
     <form id="form">
     <!--<form action="/searchRecipe" method="GET" name="" id="searchterm">-->
-        <input id="searchTermText" "type="text" />
+        <input id="searchTermText" type="text" />
         <button type="submit" value="Submit">Submit</button>
     </form>
 </div>
