@@ -10,7 +10,7 @@ extension Droplet {
         
         
         let benutzerController = BenutzerController(drop: self)      // added
-        var rezeptsuche = RezeptsucheController(drop: self)
+        let rezeptsuche = RezeptsucheController(drop: self)
         let importController = ImportController(drop: self)
         let rezeptausleseController = RezeptAusleseController(drop: self)
         

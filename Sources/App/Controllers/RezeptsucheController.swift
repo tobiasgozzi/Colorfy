@@ -26,8 +26,8 @@ class RezeptsucheController {
         
         
         let answer = compareRecipeWithSearchphrase(input: (req.formURLEncoded?["searchTermText"]?.string)!)
-
-        print((req.formURLEncoded?["searchTermText"]?.string)!)
+        drop.log.info((req.auth.authenticated(Benutzer.self)?.benutzerID)!)
+        drop.log.info((req.formURLEncoded?["searchTermText"]?.string)!)
         return try drop.view.make("main", ["resultIE": answer])
 
     }
