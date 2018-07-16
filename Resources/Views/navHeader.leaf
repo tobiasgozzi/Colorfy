@@ -4,7 +4,6 @@
     #equal(benutzer.benutzerrechte, "administrator") {
     <a href="/import-page">Importazione</a> |
     }
-#(benutzer.benutzerrechte)
 
 </nav>
 <div id="navSpacer"></div>

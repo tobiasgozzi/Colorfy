@@ -10,7 +10,7 @@ extension Droplet {
         
         
         let benutzerController = BenutzerController(drop: self)      // added
-        var rezeptsuche : RezeptsucheController? = nil
+        var rezeptsuche = RezeptsucheController(drop: self)
         let importController = ImportController(drop: self)
         let rezeptausleseController = RezeptAusleseController(drop: self)
         
@@ -79,21 +79,9 @@ extension Droplet {
             return try self.view.make("signup")
         }
         
-        authRoute.post("searchRecipe") { (req) in
-            rezeptsuche = RezeptsucheController(drop: self)
-            
-            
-            guard let answer = rezeptsuche?.compareRecipeWithSearchphrase(input: (req.formURLEncoded?["searchTermText"]?.string)!) else  {
-                print("nothing found in rezeptsuche")
-                return try self.view.make("main", ["resultIE": "error"])
-            }
-
-            print((req.formURLEncoded?["searchTermText"]?.string)!)
-            return try self.view.make("main", ["resultIE": answer])
-        }
+        authRoute.post("searchRecipe", handler: rezeptsuche.searchInIE)
         
         authRoute.socket("updateRecipe") { (req, ws) in
-            rezeptsuche = RezeptsucheController(drop: self)
             
             let userAgent = req.headers["User-Agent"]
             print(userAgent)
@@ -110,9 +98,7 @@ extension Droplet {
                 
                 ws.onText = { ws, text in
                     
-                    guard let answer = rezeptsuche?.compareRecipeWithSearchphrase(input: text) else  {
-                        return
-                    }
+                    let answer = rezeptsuche.compareRecipeWithSearchphrase(input: text)
                     
                     print(text + " sent from client")
                     try ws.send(answer)

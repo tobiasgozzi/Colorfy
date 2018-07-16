@@ -22,6 +22,16 @@ class RezeptsucheController {
         return try drop.view.make("signup")
     }
     
+    func searchInIE(_ req: Request) throws -> ResponseRepresentable {
+        
+        
+        let answer = compareRecipeWithSearchphrase(input: (req.formURLEncoded?["searchTermText"]?.string)!)
+
+        print((req.formURLEncoded?["searchTermText"]?.string)!)
+        return try drop.view.make("main", ["resultIE": answer])
+
+    }
+    
     func filterResults(){
         for item in suchergebnis {
             if let fbnr = filerobjekt?.getFarbtonCollection(),  fbnr == item.farbnummer {
