@@ -30,7 +30,7 @@ class RezeptAusleseController {
         print(rezept.farbnummer)
         print(rezept.anteile.count)
 
-        return try drop.view.make("recipe", ["recipe" : try rezept.makeNode(in: nil), "anteile": rezept.anteile.makeNode(in: nil)])
+        return try drop.view.make("recipe", ["recipe" : try rezept.makeNode(in: nil), "anteile": rezept.anteile.makeNode(in: nil)/*, "kosten" : try rezept.getCosts.makeNode(in: nil), "preise" : try rezept.getPrice.makeNode(in: nil)*/])
         
     }
     

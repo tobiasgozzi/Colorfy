@@ -8,8 +8,8 @@ class Rezept: Model {
     var rezeptID : String
     var farbnummer : String
     var farbton : String
-    var eKPreis : Float
-    var vKPreis : Float
+//    var eKPreis : Float
+//    var vKPreis : Float
     var produkt : String
     var anteile : [Rohstoffanteil]
     //var typ : Rezepttyp
@@ -17,9 +17,9 @@ class Rezept: Model {
 //    var aufbau : String
 //    var notiz :String
     
-    init(produkt : String, farbnummer : String, farbton : String, anteil : [Rohstoffanteil],/* typ: Rezepttyp,*/ kunde: String ) {
+    init(produkt : String, farbnummer : String, farbton : String, anteil : [Rohstoffanteil],/* typ: Rezepttyp,*/ kunde: String, collection: String ) {
         
-        let id = produkt.replacingOccurrences(of: " ", with: "_") + farbnummer.replacingOccurrences(of: " ", with: "_")
+        let id = collection + produkt.replacingOccurrences(of: " ", with: "_") + farbnummer.replacingOccurrences(of: " ", with: "_")
 
         self.id = Identifier.string(id)
         self.rezeptID = id
@@ -34,8 +34,8 @@ class Rezept: Model {
             kostenKalk += item.kosten
             preisKalk += item.vkPreis
         }
-        eKPreis = kostenKalk
-        vKPreis = preisKalk
+//        eKPreis = kostenKalk
+//        vKPreis = preisKalk
         
         self.produkt = produkt
         self.anteile = anteil
@@ -52,14 +52,36 @@ class Rezept: Model {
         }
     }
     
+    var getCost : Float {
+        var kostenKalk: Float = 0.0
+        
+        for item in anteile {
+            kostenKalk += item.kosten
+        }
+        
+        return kostenKalk
+    }
+    
+    var getPrice : Float {
+        var preisKalk: Float = 0.0
+        
+        for item in anteile {
+            preisKalk += item.vkPreis
+        }
+        return preisKalk
+    }
+
+    
+    
+    
     var storage: Storage = Storage()
  
     required init(row: Row) throws {
         self.rezeptID = try row.get("rezeptID")
         self.farbnummer = try row.get("farbnummer")
         self.farbton = try row.get("farbton")
-        self.eKPreis = try row.get("eKPreis")
-        self.vKPreis = try row.get("vKPreis")
+//        self.eKPreis = try row.get("eKPreis")
+//        self.vKPreis = try row.get("vKPreis")
         self.produkt = try row.get("produkt")
         self.anteile = try row.get("anteil")
 //        self.typ = try row.get("typ")
@@ -74,8 +96,8 @@ class Rezept: Model {
         try row.set("rezeptID", rezeptID)
         try row.set("farbnummer", farbnummer)
         try row.set("farbton", farbton)
-        try row.set("eKPreis", eKPreis)
-        try row.set("vKPreis", vKPreis)
+//        try row.set("eKPreis", eKPreis)
+//        try row.set("vKPreis", vKPreis)
         try row.set("produkt", produkt)
 //        try row.set("typ", typ)
         try row.set("anteil", anteile)
@@ -94,8 +116,8 @@ extension Rezept: Preparation {
             builder.string("rezeptID")
             builder.string("farbnummer")
             builder.string("farbton")
-            builder.double("eKPreis")
-            builder.double("vKPreis")
+//            builder.double("eKPreis")
+//            builder.double("vKPreis")
             
             builder.string("kunde")
             builder.string("produkt")
@@ -117,8 +139,8 @@ extension Rezept: NodeRepresentable {
         try node.set("rezeptID", rezeptID)
         try node.set("farbnummer", farbnummer)
         try node.set("farbton", farbton)
-        try node.set("eKPreis", eKPreis)
-        try node.set("vKPreis", vKPreis)
+        try node.set("getCost", getCost)
+        try node.set("getPrice", getPrice)
         try node.set("produkt", produkt)
         try node.set("kunde", kunde)
 //        try node.set("typ", typ)
@@ -127,6 +149,7 @@ extension Rezept: NodeRepresentable {
         return node
     }
 }
+
 
 extension Rezept {
     var rohstoffanteile: Children<Rezept, Rohstoffanteil> {

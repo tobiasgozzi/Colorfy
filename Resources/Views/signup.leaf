@@ -5,8 +5,18 @@
     <form action="/signup" method="POST">
         <input name="username" type="input" id="username"><br>
         <input name="password" type="password" id="password"><br>
+        <select name="type" id="type">
+            <option value="administrator">aministratore</option>
+            <option value="vKMitarbeiter">vendita</option>
+            <option value="mischpersonal">laboratorio</option>
+        </select>
         <input value="Crea Utente" type="submit">
     </form>
+
+<form action="/deleteUsers" method="POST">
+    <input value="Elimina utenti" type="submit">
+</form>
+
 </div>
 </body
 <html>

@@ -67,7 +67,14 @@ extension Droplet {
         authRoute.get("main", handler: benutzerController.loadSecuredLogin)
 
         authRoute.get("recipe", ":recipe", handler: rezeptausleseController.showRecipe)
+        
+        authRoute.get("logout", handler: benutzerController.logoutUser)
 
+        authRoute.post("deleteUsers") { (req) in
+            try Benutzer.revert(Benutzer.database!)
+            print(try Benutzer.count())
+            return try self.view.make("signup")
+        }
         
         authRoute.socket("updateRecipe") { (req, ws) in
             rezeptsuche = RezeptsucheController(drop: self)
@@ -75,14 +82,14 @@ extension Droplet {
             
             
             
-            try ws.send("ws sends")
+//            try ws.send("ws sends")
             
             ws.onText = { ws, text in
                 
                 guard let answer = rezeptsuche?.compareRecipeWithSearchphrase(input: text) else  {
                     return
                 }
-                print(text + " was printed")
+                print(text + " sent from client")
                 try ws.send(answer)
             }
 

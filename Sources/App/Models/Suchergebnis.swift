@@ -19,16 +19,16 @@ struct Suchergebnis {
         var returnValue = ""
         switch index {
         case 0:
-            returnValue = farbton
-            break;
-        case 1:
-            returnValue = kunde
-            break;
-        case 2:
             returnValue = farbnummer
             break;
+        case 1:
+            returnValue = produkt
+            break;
+        case 2:
+            returnValue = farbton
+            break;
         case 3:
-            returnValue =  produkt
+            returnValue =  kunde
             break;
         case 4:
             returnValue =  rezeptID

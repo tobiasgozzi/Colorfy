@@ -14,8 +14,8 @@ class Rohstoffanteil : Model {
     
     private var _produkt : String
     private var _anteil : Float
-    private var _kosten: Float
-    private var _vKPreis: Float
+//    private var _kosten: Float
+//    private var _vKPreis: Float
     let rezeptID: Identifier
 
     
@@ -23,8 +23,8 @@ class Rohstoffanteil : Model {
         
         self._produkt = prod.name
         self._anteil = parts
-        self._kosten = prod.kosten * parts
-        self._vKPreis = prod.preis * parts
+//        self._kosten = prod.kosten * parts
+//        self._vKPreis = prod.preis * parts
         self.rezeptID = id
     }
 
@@ -42,12 +42,20 @@ class Rohstoffanteil : Model {
     }
     public var kosten: Float {
         get {
-            return _kosten
+            guard let value = products[_produkt] else {
+                return 0.0
+            }
+
+            return value["cost"]!.float!
         }
     }
     public var vkPreis: Float {
         get {
-            return _vKPreis
+            guard let value = products[_produkt] else {
+                return 0.0
+            }
+            
+            return value["price"]!.float!
         }
     }
     
@@ -58,8 +66,8 @@ class Rohstoffanteil : Model {
         var row = Row()
         try row.set("produkt", _produkt)
         try row.set("anteil", _anteil)
-        try row.set("kosten", _kosten)
-        try row.set("vKPreis", _vKPreis)
+//        try row.set("kosten", _kosten)
+//        try row.set("vKPreis", _vKPreis)
 
         return row
     }
@@ -67,8 +75,8 @@ class Rohstoffanteil : Model {
     required init(row: Row) throws {
         self._produkt = try row.get("produkt")
         self._anteil = try row.get("anteil")
-        self._kosten = try row.get("kosten")
-        self._vKPreis = try row.get("vKPreis")
+//        self._kosten = try row.get("kosten")
+//        self._vKPreis = try row.get("vKPreis")
         self.rezeptID = try row.get("rezeptID")
     }
 
@@ -81,8 +89,8 @@ extension Rohstoffanteil : Preparation {
         try database.create(self, closure: { (builder) in
             builder.string("produkt")
             builder.double("anteil")
-            builder.double("kosten")
-            builder.double("vKPreis")
+//            builder.double("kosten")
+//            builder.double("vKPreis")
             builder.parent(Rezept.self)
         })
     }
@@ -98,8 +106,8 @@ extension Rohstoffanteil: NodeRepresentable {
         var node = Node(context)
         try node.set("produkt", _produkt)
         try node.set("anteil", _anteil)
-        try node.set("kosten", _kosten)
-        try node.set("vKPreis", _vKPreis)
+        try node.set("kosten", kosten)
+        try node.set("vKPreis", vkPreis)
         let stringAnteil = String(format: "%.2f", _anteil)
         try node.set("stringAnteil", stringAnteil)
         return node

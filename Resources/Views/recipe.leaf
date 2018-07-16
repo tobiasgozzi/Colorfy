@@ -10,10 +10,11 @@
 #(recipe.anteile.count)
 
 <div class="highlightBox">
-#loop(anteile, "anteil") { <div class="rTableRow"><div class="rTableCell">#(anteil.produkt)</div><div class="rTableCell"> #(anteil.stringAnteil)</div></div> }
+#loop(anteile, "anteil") { <div class="rTableRow"><div class="rTableCell">#(anteil.produkt)</div><div class="rTableCell"> #(anteil.stringAnteil)</div><div class="rTableCell"> #(anteil.vkPreis)</div><div class="rTableCell"> #(anteil.kosten)</div></div> }
 <div>
-
+<p>#(recipe.getPrice) - #(recipe.getCost)</p>
 
 </body>
 </html>
+
 

@@ -1,6 +1,10 @@
 <nav>
-    <a href="/login">login</a> |
-    <a href="/main">main</a> |
-    <a href="/import-page">import</a> |
+    <a href="/logout">Esci</a> |
+    <a href="/main">Cerca</a> |
+    #equal(benutzer.benutzerrechte, "administrator") {
+    <a href="/import-page">Importazione</a> |
+    }
+#(benutzer.benutzerrechte)
+
 </nav>
 <div id="navSpacer"></div>

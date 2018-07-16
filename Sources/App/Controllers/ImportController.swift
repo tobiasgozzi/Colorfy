@@ -9,100 +9,130 @@ import Foundation
 import Vapor
 
 let products : Dictionary<String, Dictionary<String, String>> = [
+    "H36025W" : [
+        "name" : "PUR Color Weiss",
+        "price" : "7.31",
+        "cost" : "3.69"
+    ],
+    "H95025W" : [
+        "name" : "PUR Color Converter",
+        "price" : "7.21",
+        "cost" : "3.86"
+    ],
+    "I790W" : [
+        "name" : "PUR Hochglanz Weiss",
+        "price" : "8.10",
+        "cost" : "4.34"
+    ],
+    "I360W" : [
+        "name" : "PUR Hochglanz Converter",
+        "price" : "8.10",
+        "cost" : "4.27"
+    ],
     "M56020W" : [
-        "name" : "Kompakt Colour trans",
-        "price" : "3.43",
-        "cost" : "1.32"
+        "name" : "Kompakt Colour Weiss",
+        "price" : "10.44",
+        "cost" : "5.60"
     ],
     "M55020W" : [
-        "name" : "Kompakt Colour bianco",
-        "price" : "3.43",
-        "cost" : "1.32"
+        "name" : "Kompakt Colour Converter",
+        "price" : "10.44",
+        "cost" : "5.60"
     ],
     "82555 Arancio Sc" : [
-        "name" : "AC 555 Arancio scuro",
-        "price" : "14.32",
-        "cost" : "8.31"
+        "name" : "82555 Arancio scuro",
+        "price" : "88.27",
+        "cost" : "47.26"
     ],
     "82508 Rosso Sc." : [
-        "name" : "AC 555 Rosso Sc.",
-        "price" : "14.32",
-        "cost" : "8.31"
+        "name" : "82508 Rosso scuro",
+        "price" : "31.33",
+        "cost" : "16.78"
     ],
     "82536 Verde" : [
-        "name" : "AC 555 Verde",
-        "price" : "14.32",
-        "cost" : "8.31"
+        "name" : "82536 Verde",
+        "price" : "32.84",
+        "cost" : "17.58"
     ],
     "82551 Giallo Ch." : [
-        "name" : "AC 555 Giallo Ch.",
-        "price" : "14.32",
-        "cost" : "8.31"
+        "name" : "82551 Giallo chiaro",
+        "price" : "68.02",
+        "cost" : "36.43"
     ],
     "82063 Arancio Ch" : [
-        "name" : "AC 063 Arancio chiaro",
-        "price" : "14.32",
-        "cost" : "8.31"
+        "name" : "82063 Arancio Chiaro",
+        "price" : "62.69",
+        "cost" : "33.57"
     ],
     "82504 Blu Verde" : [
-        "name" : "AC 504 blu verde",
-        "price" : "14.32",
-        "cost" : "8.31"
+        "name" : "82504 Blu Verde",
+        "price" : "33.91",
+        "cost" : "18.16"
     ],
     "82556 Blu Rosso" : [
-        "name" : "AC 556 blu rosso",
-        "price" : "14.32",
-        "cost" : "8.31"
+        "name" : "82556 Blu Rosso",
+        "price" : "31.77",
+        "cost" : "17.02"
     ],
     "82507 Giallo Os." : [
-        "name" : "AC 507 Giallo Ossido",
-        "price" : "14.32",
-        "cost" : "8.31"
+        "name" : "82507 Giallo ossido",
+        "price" : "19.61",
+        "cost" : "10.51"
     ],
     "82010 Giallo" : [
         "name" : "AC 010 Giallo",
-        "price" : "14.32",
-        "cost" : "8.31"
+        "price" : "64.17",
+        "cost" : "34.36"
     ],
     "82545 Violetto" : [
-        "name" : "AC 545 Violetto",
-        "price" : "14.32",
-        "cost" : "8.31"
+        "name" : "82545 Violetto",
+        "price" : "75.48",
+        "cost" : "40.42"
     ],
     "82590 Magenta" : [
-        "name" : "AC 590 Magenta",
-        "price" : "14.32",
-        "cost" : "8.31"
+        "name" : "82590 Magenta",
+        "price" : "68.02",
+        "cost" : "36.43"
     ],
     "82541 Viola" : [
-        "name" : "AC 555 Arancio scuro",
-        "price" : "14.32",
-        "cost" : "8.31"
+        "name" : "82541 Viola",
+        "price" : "69.07",
+        "cost" : "36.99"
     ],
     "82597 Nero" : [
-        "name" : "AC 555 Arancio scuro",
-        "price" : "14.32",
-        "cost" : "8.31"
+        "name" : "82597 Nero",
+        "price" : "22.17",
+        "cost" : "11.87"
     ],
     "82512 Rosso Os." : [
-        "name" : "AC 555 Arancio scuro",
-        "price" : "14.32",
-        "cost" : "8.31"
+        "name" : "82512 Rosso ossido",
+        "price" : "21.12",
+        "cost" : "11.30"
     ],
     "82557 Rosso V." : [
-        "name" : "AC 555 Arancio scuro",
-        "price" : "14.32",
-        "cost" : "8.31"
+        "name" : "82557 Rosso vivo",
+        "price" : "69.07",
+        "cost" : "36.99"
     ],
     "82600 Bianco" : [
-        "name" : "AC 555 Arancio scuro",
-        "price" : "14.32",
-        "cost" : "8.31"
+        "name" : "82600 Bianco",
+        "price" : "10.88",
+        "cost" : "5.83"
     ],
     "PU9551 Giallo At." : [
-        "name" : "AC 551 Giallo AT",
-        "price" : "14.32",
-        "cost" : "8.31"
+        "name" : "82551 Giallo chiaro",
+        "price" : "68.02",
+        "cost" : "36.43"
+    ],
+    "82263 Giallo L." : [
+        "name" : "82263 Giallo limone",
+        "price" : "79.10",
+        "cost" : "42.35"
+    ],
+    "82515 Giallo C." : [
+        "name" : "82515 Giallo caldo",
+        "price" : "47.75",
+        "cost" : "25.57"
     ]
 ]
 
@@ -121,14 +151,15 @@ class ImportController {
     
     func elaborateLoadedFile(_ req: Request) throws -> ResponseRepresentable {
         
-        
+        let collectionName = req.formData?["recipeCollectionName"]?.string
+        print("\(req.formData?["myFile"]?.filename) importing into \(collectionName)")
         if let dataBytes = req.formData?["myFile"]?.bytes {
             
-            let data = Data.init(bytes: dataBytes)
-            _ = saveXML(doc: data)
-            let xmlDoc = try XMLDocument.init(data: data, options: XMLNode.Options.documentTidyXML)
-            //let xmlDox = try XMLDocument.init(contentsOf: <#T##URL#>, options: <#T##XMLNode.Options#>)
             
+            let data = Data.init(bytes: dataBytes)
+
+            
+            let xmlDoc = try XMLDocument.init(data: data, options: XMLNode.Options.documentTidyXML)
             
             if let root = xmlDoc.rootElement() {
                 if let rootChildren = root.children {
@@ -138,7 +169,7 @@ class ImportController {
                         
                         if let leafes = recordNodes.children {
                             
-                            print("\(leafes.count) is count of leafes")
+                            //print("\(leafes.count) is count of leafes")
                             var parts : Dictionary<String, Float> = [:]
                             var tempFartonCodice = ""
                             var tempProdukt = ""
@@ -152,27 +183,27 @@ class ImportController {
 //                                    for leafValue in leafChildren {
 
                                         if let name = leaf.name, let val = leaf.stringValue {
-                                            print("\(leafindex) is current index with value \(name) and \(val)")
+                                            //print("\(leafindex) is current index with value \(name) and \(val)")
                                             switch name {
                                                 
                                             case "codiceTinta":
                                                 tempFartonCodice = val
-                                                print("codice tinta \(val)")
+                                                //print("codice tinta \(val)")
                                                 break;
                                             case "codiceProdotto":
 
                                                 let nextSibling : Float = (leafes[leafindex + 1].child(at: 0)?.stringValue!.float!)!
-                                                print("codice prodotto \(val)")
+                                                //print("codice prodotto \(val)")
                                                 mainProduct = val
                                                 parts[mainProduct] = nextSibling
                                                 break;
                                             case "p1","p2","p3","p4","p5","p6":
-                                                print("P \(name) \(val)")
+                                                //print("P \(name) \(val)")
                                                 if val == "" || val == " " {
                                                     break;
                                                 }
                                                 let nextSibling : Float = (leafes[leafindex + 1].child(at: 0)?.stringValue!.float!)!
-                                                print("--- \(nextSibling)")
+                                                //print("--- \(nextSibling)")
 
                                                 tempProdukt = val
                                                 parts[tempProdukt] = nextSibling
@@ -211,7 +242,7 @@ class ImportController {
                             }
                             
                             
-                            let rezept = Rezept(produkt: mainProduct, farbnummer: tempFartonCodice, farbton: "", anteil: [], kunde: "")
+                            let rezept = Rezept(produkt: mainProduct, farbnummer: tempFartonCodice, farbton: "", anteil: [], kunde: "", collection: collectionName!)
                             
                             
                             var teile : [Rohstoffanteil] = []
@@ -219,7 +250,7 @@ class ImportController {
                             for i in rohstoffanteile {
                                 let anteil = Rohstoffanteil(prod: i.key, parts: i.value, id: rezept.id!)
                                 do {
-                                    try anteil.save()
+                                        try anteil.save()
                                 } catch let error as NodeError {
                                     print("\(error.debugDescription) \(error.printable) prevented to save rohstoffanteil")
                                 }
@@ -231,7 +262,10 @@ class ImportController {
                         
                         
                             do {
+                                
                                 try rezept.save()
+                                
+                                
                             } catch let err as NodeError {
                                 print("\(err.debugDescription) \(err.printable) prevented to save recipe")
                             }
@@ -312,9 +346,9 @@ class ImportController {
             print(error.localizedDescription)
         }
         
+        let currentUser = req.auth.authenticated(Benutzer.self)
         
-        
-        return try drop.view.make("import-page", ["rezeptanzahl": "\(anzahl) ricette salvate" ])
+        return try drop.view.make("import-page", ["rezeptanzahl": "\(anzahl) ricette salvate", "user": currentUser?.benutzerechte])
         
     }
     
@@ -341,20 +375,15 @@ class ImportController {
         return try drop.view.make("import-page", ["rezeptanzahl": "\(anzahl) ricette salvate" ])
 
     }
-    
-    func saveXML(doc: Data) -> Bool {
+    //*
+    //*used to save
+    func saveXML(doc: Data) {
         
         let fileManager : FileManager = FileManager.default
         
         let path = "/root/imports/import\(Date.init().description).xml"
         
-        do {
-            try fileManager.createFile(atPath: path, contents: doc, attributes: nil)
-        }
-        catch let err {
-            return false
-        }
-        return true
+        fileManager.createFile(atPath: path, contents: doc, attributes: nil)
     }
     
 

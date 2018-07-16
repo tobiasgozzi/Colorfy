@@ -44,7 +44,7 @@
 
 <p id="placeHere"></p>
 
-<p>logged in with username: #(benutzer.benutzerName)</p>
+<p>Collegato con utenza #(benutzer.benutzerName) di livello #(benutzer.benutzerrechte)</p>
 <script src="recipeSearch.js"></script>
 <script>
     var subApp = new RecipeFinder(window.location.host + "/updateRecipe");

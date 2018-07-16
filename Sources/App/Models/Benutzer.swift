@@ -5,7 +5,7 @@ import AuthProvider
 
 final class Benutzer : Model {
     
-//    - benutzerechte : BenutzerRechte
+    var benutzerechte : String
     var benutzerID : String
     var benutzerName : String
     var benutzerPW : String
@@ -30,16 +30,18 @@ final class Benutzer : Model {
         benutzerName = try row.get("benutzerName")
         benutzerPW = try row.get("benutzerPW")
         benutzerID = try row.get("benutzerID")
+        benutzerechte = try row.get("benutzerrechte")
     }
     
-    init(benutzerID: String, benutzerName: String, benutzerPW: String) {
+    init(benutzerID: String, benutzerName: String, benutzerPW: String, benutzerrechte: String) {
         self.benutzerID = benutzerID
         self.benutzerName = benutzerName
         self.benutzerPW = benutzerPW
+        self.benutzerechte = benutzerrechte
     }
     
-    convenience init(benutzerName: String, benutzerPW: String) {
-        self.init(benutzerID: Date.init().description, benutzerName: benutzerName, benutzerPW: benutzerPW)
+    convenience init(benutzerName: String, benutzerPW: String, benutzerrechte : String) {
+        self.init(benutzerID: Date.init().description, benutzerName: benutzerName, benutzerPW: benutzerPW, benutzerrechte: benutzerrechte)
     }
     
     func makeRow() throws -> Row {
@@ -47,6 +49,7 @@ final class Benutzer : Model {
         try row.set("benutzerName", benutzerName)
         try row.set("benutzerPW", benutzerPW)
         try row.set("benutzerID", benutzerID)
+        try row.set("benutzerrechte", benutzerechte)
         return row
     }
     
@@ -60,7 +63,7 @@ extension Benutzer: Preparation {
             builder.id()
             builder.string("benutzerName")
             builder.string("benutzerID")
-            builder.string("benutzerPW")
+            builder.string("benutzerrechte")
 
         }
     }
@@ -77,9 +80,12 @@ extension Benutzer: NodeRepresentable {
         try node.set("benutzerID", benutzerID)
         try node.set("benutzerName", benutzerName)
         try node.set("benutzerPW", benutzerPW)
+        try node.set("benutzerrechte", benutzerechte)
+
         return node
     }
 }
 
 extension Benutzer: PasswordAuthenticatable {}
 extension Benutzer: SessionPersistable {}
+

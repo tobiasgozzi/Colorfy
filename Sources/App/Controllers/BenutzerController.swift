@@ -22,7 +22,8 @@ final class BenutzerController {
     func saveUser(_ req: Request) throws -> ResponseRepresentable {
         guard
             let benutzer = req.formURLEncoded?["username"]?.string,
-            let password = req.formURLEncoded?["password"]?.string
+            let password = req.formURLEncoded?["password"]?.string,
+            let rechte = req.formURLEncoded?["type"]?.string
             else {
                 return "either email or password is missing"
         }
@@ -32,7 +33,7 @@ final class BenutzerController {
                 return "email already exists"
         }
         
-        let user = Benutzer(benutzerName: benutzer, benutzerPW: password)
+        let user = Benutzer(benutzerName: benutzer, benutzerPW: password, benutzerrechte: rechte)
         try user.save()
         
         let info = try Benutzer.makeQuery().filter("benutzerName", benutzer).first()
@@ -45,6 +46,18 @@ final class BenutzerController {
     
     func showLogin(_ req: Request) throws -> ResponseRepresentable {
         
+
+        return try drop.view.make("login")
+    }
+    
+    func logoutUser(req: Request) throws -> ResponseRepresentable {
+        
+        do {
+            try req.auth.unauthenticate()
+        } catch let err as AuthError {
+            print(err.debugDescription)
+        }
+            
         return try drop.view.make("login")
     }
     
@@ -64,7 +77,8 @@ final class BenutzerController {
         // persists user and creates a session cookie
         req.auth.authenticate(user)
         print(user.benutzerName + " authenticated")
-        return Response(redirect: "/main")
+        
+        return try drop.view.make("main",["benutzer": user])// Response(redirect: "/main", ["user": user.benutzerechte])
         
         //        let list = try Benutzer.all()
         //        print(list.count)

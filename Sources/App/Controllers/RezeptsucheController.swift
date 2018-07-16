@@ -56,7 +56,16 @@ class RezeptsucheController {
                 let queryFetch = try query.all()
                 
                 for (index, rezept) in queryFetch.enumerated() {
-                    let result = Suchergebnis(farbton: rezept.farbton, kunde: rezept.kunde, farbnummer: rezept.farbnummer, rezeptID: rezept.rezeptID, produkt: rezept.produkt)
+                    
+                    guard let prodCod = products[rezept.produkt] else {
+                        print("\(rezept.produkt) not found")
+                        break
+                    }
+                    guard let prodName = prodCod["name"] else {
+                        break
+                    }
+                    
+                    let result = Suchergebnis(farbton: rezept.farbton, kunde: rezept.kunde, farbnummer: rezept.farbnummer, rezeptID: rezept.rezeptID, produkt: prodName)
                 
                 
                     JSONcontent.append(generateRecipeHtmlSniplet(match: result, currentItem: index))
@@ -131,7 +140,7 @@ class RezeptsucheController {
 
         htmlLine.append(openTrHead + evenOrUneven(nr: currentItem) + openTrTail)
 
-        for i in 0...4 {
+        for i in 0...3 {
             htmlLine.append(linkHead)
             htmlLine.append(openTd)
             htmlLine.append(match[i])
