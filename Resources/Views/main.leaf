@@ -5,7 +5,7 @@
 <h3>Inserisci una tinta:</h3>
 <div>
     <form id="form">
-    <!--<form action="/searchRecipe" method="GET" name="" id="searchterm">-->
+    <!--<form action="/searchRecipe" method="POST" name="" id="searchterm">-->
         <input id="searchTermText" type="text" />
         <button type="submit" value="Submit">Submit</button>
     </form>
@@ -55,7 +55,7 @@ if (!(/*@cc_on!@*/false || !!document.documentMode)) {
 var subApp = new RecipeFinder(window.location.host + "/updateRecipe");
 } else {
 document.getElementById("form").setAttribute("action","/searchRecipe");
-document.getElementById("form").setAttribute("method","GET");
+document.getElementById("form").setAttribute("method","POST");
 document.getElementById("form").setAttribute("id","searchterm");
 }
 
