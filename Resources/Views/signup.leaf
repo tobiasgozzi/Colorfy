@@ -6,9 +6,9 @@
         <input name="username" type="input" id="username"><br>
         <input name="password" type="password" id="password"><br>
         <select name="type" id="type">
-            <option value="administrator">aministratore</option>
-            <option value="vKMitarbeiter">vendita</option>
-            <option value="mischpersonal">laboratorio</option>
+            <option value="aministratore">aministratore</option>
+            <option value="vendita">vendita</option>
+            <option value="laboratorio">laboratorio</option>
         </select>
         <input value="Crea Utente" type="submit">
     </form>

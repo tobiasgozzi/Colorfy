@@ -1,7 +1,7 @@
 <nav>
     <a href="/logout">Esci</a> |
     <a href="/main">Cerca</a> |
-    #equal(benutzer.benutzerrechte, "administrator") {
+    #equal(benutzer.benutzerrechte, "aministratore") {
     <a href="/import-page">Importazione</a> |
     }
 
