@@ -65,6 +65,9 @@ extension Droplet {
         
         authRoute.get("", handler: benutzerController.loadSecuredLogin)
         authRoute.get("main", handler: benutzerController.loadSecuredLogin)
+//        authRoute.get("searchRecipe") {(req) in
+//
+//        }
 
         authRoute.get("recipe", ":recipe", handler: rezeptausleseController.showRecipe)
         
@@ -76,22 +79,46 @@ extension Droplet {
             return try self.view.make("signup")
         }
         
-        authRoute.socket("updateRecipe") { (req, ws) in
+        authRoute.post("searchRecipe") { (req) in
             rezeptsuche = RezeptsucheController(drop: self)
             
             
-            
-            
-//            try ws.send("ws sends")
-            
-            ws.onText = { ws, text in
-                
-                guard let answer = rezeptsuche?.compareRecipeWithSearchphrase(input: text) else  {
-                    return
-                }
-                print(text + " sent from client")
-                try ws.send(answer)
+            guard let answer = rezeptsuche?.compareRecipeWithSearchphrase(input: (req.formURLEncoded?["searchTermText"]?.string)!) else  {
+                return try self.view.make("main", ["resultIE": "error"])
             }
+
+            
+            return try self.view.make("main", ["resultIE": answer])
+        }
+        
+        authRoute.socket("updateRecipe") { (req, ws) in
+            rezeptsuche = RezeptsucheController(drop: self)
+            
+            let userAgent = req.headers["User-Agent"]
+            print(userAgent)
+//            print((req.formURLEncoded?["searchTermText"]?.string)!)
+//
+//
+//            guard let answer = rezeptsuche?.compareRecipeWithSearchphrase(input: (req.formURLEncoded?["searchTermText"]?.string)!) else  {
+//                return
+//            }
+
+            
+
+                //            try ws.send("ws sends")
+                
+                ws.onText = { ws, text in
+                    
+                    guard let answer = rezeptsuche?.compareRecipeWithSearchphrase(input: text) else  {
+                        return
+                    }
+                    
+                    print(text + " sent from client")
+                    try ws.send(answer)
+                }
+
+            
+            
 
             
         }

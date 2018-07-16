@@ -42,12 +42,24 @@
     </div>
 </div>-->
 
+<p>#(resultIE)</p>
 <p id="placeHere"></p>
 
 <p>Collegato con utenza #(benutzer.benutzerName) di livello #(benutzer.benutzerrechte)</p>
 <script src="recipeSearch.js"></script>
 <script>
-    var subApp = new RecipeFinder(window.location.host + "/updateRecipe");
+console.log(navigator.userAgent);
+console.log(/*@cc_on!@*/false || !!document.documentMode);
+
+if (!(/*@cc_on!@*/false || !!document.documentMode)) {
+var subApp = new RecipeFinder(window.location.host + "/updateRecipe");
+} else {
+document.getElementById("form").setAttribute("action","/searchRecipe");
+document.getElementById("form").setAttribute("method","GET");
+document.getElementById("form").setAttribute("id","searchterm");
+}
+
+
 </script>
 
 
