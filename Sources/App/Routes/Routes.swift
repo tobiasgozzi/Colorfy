@@ -84,10 +84,11 @@ extension Droplet {
             
             
             guard let answer = rezeptsuche?.compareRecipeWithSearchphrase(input: (req.formURLEncoded?["searchTermText"]?.string)!) else  {
+                print("nothing found in rezeptsuche")
                 return try self.view.make("main", ["resultIE": "error"])
             }
 
-            
+            print((req.formURLEncoded?["searchTermText"]?.string)!)
             return try self.view.make("main", ["resultIE": answer])
         }
         

@@ -14,8 +14,18 @@ let products : Dictionary<String, Dictionary<String, String>> = [
         "price" : "7.31",
         "cost" : "3.69"
     ],
-    "H95025W" : [
+    "H98025W" : [
         "name" : "PUR Color Converter",
+        "price" : "7.21",
+        "cost" : "3.86"
+    ],
+    "H36010W" : [
+        "name" : "PUR Color Weiss G10",
+        "price" : "7.31",
+        "cost" : "3.69"
+    ],
+    "H98010W" : [
+        "name" : "PUR Color Converter G10",
         "price" : "7.21",
         "cost" : "3.86"
     ],
