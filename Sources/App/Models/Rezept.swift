@@ -10,6 +10,7 @@ class Rezept: Model {
     var farbton : String
 //    var eKPreis : Float
 //    var vKPreis : Float
+    var kollektion: String
     var produkt : String
     var anteile : [Rohstoffanteil]
     //var typ : Rezepttyp
@@ -25,7 +26,7 @@ class Rezept: Model {
         self.rezeptID = id
         self.farbnummer = farbnummer
         self.farbton = farbton
-        
+        self.kollektion = collection
 
         var kostenKalk: Float = 0.0
         var preisKalk: Float = 0.0
@@ -83,6 +84,7 @@ class Rezept: Model {
 //        self.eKPreis = try row.get("eKPreis")
 //        self.vKPreis = try row.get("vKPreis")
         self.produkt = try row.get("produkt")
+        self.kollektion = try row.get("kollektion")
         self.anteile = try row.get("anteil")
 //        self.typ = try row.get("typ")
         self.kunde = try row.get("kunde")
@@ -99,6 +101,7 @@ class Rezept: Model {
 //        try row.set("eKPreis", eKPreis)
 //        try row.set("vKPreis", vKPreis)
         try row.set("produkt", produkt)
+        try row.set("kollektion", kollektion)
 //        try row.set("typ", typ)
         try row.set("anteil", anteile)
         try row.set("kunde", kunde)
@@ -118,7 +121,7 @@ extension Rezept: Preparation {
             builder.string("farbton")
 //            builder.double("eKPreis")
 //            builder.double("vKPreis")
-            
+            builder.string("kollektion")
             builder.string("kunde")
             builder.string("produkt")
             builder.custom("anteil", type: "[Rohstoffanteil]")
@@ -143,6 +146,7 @@ extension Rezept: NodeRepresentable {
         try node.set("getPrice", getPrice)
         try node.set("produkt", produkt)
         try node.set("kunde", kunde)
+        try node.set("kollektion", kollektion)
 //        try node.set("typ", typ)
         try node.set("anteile", anteile)
         

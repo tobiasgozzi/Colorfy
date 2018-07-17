@@ -21,7 +21,6 @@ extension Droplet {
         post("signup", handler: benutzerController.saveUser)
         
         
-        
         //User versucht login
         //post("login", handler: benutzerController.loginUser)  // added
         
@@ -80,6 +79,8 @@ extension Droplet {
         }
         
         authRoute.post("searchRecipe", handler: rezeptsuche.searchInIE)
+        
+        authRoute.socket("allowUpdateQuantity", handler: rezeptausleseController.updateQuantity)
         
         authRoute.socket("updateRecipe") { (req, ws) in
             

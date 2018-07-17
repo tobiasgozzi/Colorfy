@@ -34,6 +34,21 @@ class RezeptAusleseController {
         
     }
     
+    func updateQuantity(_ req: Request, _ ws: WebSocket) throws {
+        
+        
+        
+            ws.onText = { ws, text in
+                
+//                let answer = rezeptsuche.compareRecipeWithSearchphrase(input: text)
+                
+                print(text + " sent from client")
+                try ws.send("answer")
+            }
+
+        
+    }
+    
 
 }
 

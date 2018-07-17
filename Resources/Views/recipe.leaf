@@ -3,17 +3,27 @@
 #embed("navHeader")
 <div class="container text-centered">
 <h1>Dettaglio ricetta</h1>
-<h3>Ricetta #(recipe.farbnummer)</h3>
+<h3>Ricetta #(recipe.kollektion) #(recipe.farbnummer)</h3>
 <div id="insertHere"></div>
 
 
-#(recipe.anteile.count)
 
 <div class="highlightBox">
+<form id="quantity">
+<input name="quantity" type="number">
+<button type="submit" value="submit">Ricalcola</button>
+</form>
+
 #loop(anteile, "anteil") { <div class="rTableRow"><div class="rTableCell">#(anteil.produkt)</div><div class="rTableCell"> #(anteil.stringAnteil)</div><div class="rTableCell"> #equal(benutzerrechte, "aministratore"){#(anteil.vkPreis)}</div><div class="rTableCell"> #equal(benutzerrechte, "aministratore"){#(anteil.kosten)}</div></div> }
 <div>
 <p>#equal(benutzerrechte, "aministratore"){#(recipe.getPrice) - #(recipe.getCost)}##equal(benutzerrechte, "vendita"){#(recipe.getPrice) - #(recipe.getCost)}</p>
 </div>
+
+<script>
+var subApp = new RecipeFinder(window.location.host + "/allowUpdateQuantity");
+</script>
+
+<script src="updateQuantity.js"></script>
 </body>
 </html>
 

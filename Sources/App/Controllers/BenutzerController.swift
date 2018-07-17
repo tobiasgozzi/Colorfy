@@ -71,11 +71,14 @@ final class BenutzerController {
         }
         let credentials = Password(username: username, password: password)
         // returns matching user (throws error if user doesn't exist)
-        print(" about to try authentification \(Benutzer.usernameKey)")
+        print("about to try authentification for \(username)")
 
         let user = try Benutzer.authenticate(credentials)
+
         // persists user and creates a session cookie
         req.auth.authenticate(user)
+        
+        
         print(user.benutzerName + " authenticated")
         
         return try drop.view.make("main",["benutzer": user])// Response(redirect: "/main", ["user": user.benutzerechte])
@@ -86,18 +89,8 @@ final class BenutzerController {
         //        return try drop.view.make("main", ["benutzer": list.makeNode(in: nil)])
     }
     
-    
-    
-    
-    func showMain(_ req: Request) throws -> ResponseRepresentable {
-        let list = try Benutzer.all()
-        print(list.count)
-        print(list.last?.benutzerName)
-        return try drop.view.make("main", ["benutzer": list.makeNode(in: nil)])
-    }
-    
     func loadSecuredLogin(_ req: Request) throws -> ResponseRepresentable {
-        print("reachedLogin")
+        print("reached main site")
         let user: Benutzer = try req.auth.assertAuthenticated()
         return try drop.view.make("main", ["benutzer": try user.makeNode(in: nil)])
     }
