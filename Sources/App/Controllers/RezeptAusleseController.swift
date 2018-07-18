@@ -30,7 +30,12 @@ class RezeptAusleseController {
         print(rezept.farbnummer)
         print(rezept.anteile.count)
 
-        return try drop.view.make("recipe", ["recipe" : try rezept.makeNode(in: nil), "anteile": rezept.anteile.makeNode(in: nil), "benutzerrechte" : req.auth.authenticated(Benutzer.self)?.benutzerechte])
+        var indexes : [Int] = []
+        for i in 0 ... rezept.anteile.count {
+            indexes.append(i)
+        }
+        
+        return try drop.view.make("recipe", ["recipe" : try rezept.makeNode(in: nil), "anteile": rezept.anteile.makeNode(in: nil), "benutzerrechte" : req.auth.authenticated(Benutzer.self)?.benutzerechte, "indexes" : indexes])
         
     }
     
@@ -40,10 +45,13 @@ class RezeptAusleseController {
         
             ws.onText = { ws, text in
                 
+                //ws gets [String] with quantityfactor and quantities, needs to calculate and send quantities back
+                
+                
 //                let answer = rezeptsuche.compareRecipeWithSearchphrase(input: text)
                 
                 print(text + " sent from client")
-                try ws.send("answer")
+                try ws.send(text)
             }
 
         

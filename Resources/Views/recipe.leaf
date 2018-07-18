@@ -10,20 +10,20 @@
 
 <div class="highlightBox">
 <form id="quantity">
-<input name="quantity" type="number">
+<input name="quantity" id="quantityInput" "type="number">
 <button type="submit" value="submit">Ricalcola</button>
 </form>
 
-#loop(anteile, "anteil") { <div class="rTableRow"><div class="rTableCell">#(anteil.produkt)</div><div class="rTableCell"> #(anteil.stringAnteil)</div><div class="rTableCell"> #equal(benutzerrechte, "aministratore"){#(anteil.vkPreis)}</div><div class="rTableCell"> #equal(benutzerrechte, "aministratore"){#(anteil.kosten)}</div></div> }
+#loop(anteile, "anteil") { <div class="rTableRow"><div class="rTableCell">#(anteil.produkt)</div><div class="rTableCell" id="quantityField"> #(anteil.stringAnteil)</div><div class="rTableCell"> #equal(benutzerrechte, "aministratore"){#(anteil.vkPreis)}</div><div class="rTableCell"> #equal(benutzerrechte, "aministratore"){#(anteil.kosten)}</div></div> }
 <div>
 <p>#equal(benutzerrechte, "aministratore"){#(recipe.getPrice) - #(recipe.getCost)}##equal(benutzerrechte, "vendita"){#(recipe.getPrice) - #(recipe.getCost)}</p>
 </div>
+<script src="/updateQuantity.js"></script>
 
 <script>
 var subApp = new RecipeFinder(window.location.host + "/allowUpdateQuantity");
 </script>
 
-<script src="updateQuantity.js"></script>
 </body>
 </html>
 

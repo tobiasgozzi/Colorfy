@@ -4,15 +4,17 @@ function RecipeFinder(host) {
     
     subApp.ws = new WebSocket('ws://' + host);
     
-    $('#quantity').o('submit', function(e) {
+    $('#quantity').on('submit', function(e) {
                   e.preventDefault();
-                  var term = document.getElementById("quantity").value;
+                      
+                      //send quantityInput and single quantities as [String]
+                  var term = document.getElementById("quantityInput").value;
                      console.log(term);
                   subApp.ws.send(term);
                   });
     
     subApp.ws.onmessage = function (e) {
-        document.getElementById("placeHere").innerHTML = e.data;
+        document.getElementById("quantityField").innerHTML = e.data;
         
         console.log('Server: ' + e.data);
     };
