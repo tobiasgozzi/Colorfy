@@ -5,17 +5,59 @@ function RecipeFinder(host) {
     subApp.ws = new WebSocket('ws://' + host);
     
     $('#quantity').on('submit', function(e) {
-                  e.preventDefault();
                       
-                      //send quantityInput and single quantities as [String]
-                  var term = document.getElementById("quantityInput").value;
-                     console.log(term);
-                  subApp.ws.send(term);
+                      
+                      e.preventDefault();
+                      
+                      var term = document.getElementById("quantityInput").value;
+
+                      if (Number.isInteger(parseFloat(term))) {
+                        var elems = document.querySelectorAll('.quantityField');
+                        var values = Array.prototype.map.call(elems, function(obj) {
+                          return obj.getAttribute("value");
+                        });
+                        console.log(values);
+                      
+                        var quantityFieldString = Array.prototype.map.call(values, function(obj) {
+                          var val = parseFloat(obj);
+                          if (!(Number.isNaN(val))) {
+                            var factor = parseFloat(term)/1000;
+                            val *= factor;
+                          }
+                          return val;
+                        });
+                        console.log(quantityFieldString);
+                      
+                      subApp.ws.send(quantityFieldString);
+                      } else {
+                        alert("Prego inserire un numero senza punti e/o virgole.");
+                      }
                   });
     
     subApp.ws.onmessage = function (e) {
-        document.getElementById("quantityField").innerHTML = e.data;
         
-        console.log('Server: ' + e.data);
+//        var quantitiesFields = document.getElementsByClassName("quantityField");
+        var singleUnits = e.data.split(",");
+        console.log(singleUnits);
+
+        for(var i = 0; i<singleUnits.length;++i) {
+            console.log(i + " " + singleUnits[i]);
+            document.getElementById(i).innerHTML = singleUnits[i];
+        }
+//        for(const [index, value] of quantitiesFields) {
+//            value.innerHTML = singleUnits[index];
+//        }
+
+//        var quantitiesFields = document.querySelectorAll(".quantityField");
+//        console.log(e);
+//        for(const [value, index] of singleUnits) {
+//            console.log(index);
+//            document.getElementById(index).innerHTML = value;
+//        }
+
+        
+//        document.getElementById(quantitiesFields[i]).innerHTML = "stringy"//e.data;
+        
+
     };
 }

@@ -46,11 +46,11 @@ class RezeptAusleseController {
             ws.onText = { ws, text in
                 
                 //ws gets [String] with quantityfactor and quantities, needs to calculate and send quantities back
-                
-                
+                var strAry = text.split(separator: ";") //String.split(text) {$0 == ";"}
+                //var strAry : [String] //= text
 //                let answer = rezeptsuche.compareRecipeWithSearchphrase(input: text)
                 
-                print(text + " sent from client")
+                print(text.count) //+" sent from client")
                 try ws.send(text)
             }
 

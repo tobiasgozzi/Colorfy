@@ -1,5 +1,5 @@
 <nav>
-    <a class="navbar-brand ml-2"><img src="Colorfy-nav.png"> </a>
+    <a class="navbar-brand ml-2"><img src="/Colorfy-nav.png"> </a>
     <a href="/logout">Esci</a> |
     <a href="/main">Cerca</a> |
     #equal(benutzer.benutzerrechte, "aministratore") {
