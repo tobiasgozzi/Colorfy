@@ -18,9 +18,9 @@ class RezeptsucheController {
         self.drop = drop
     }
     
-    func findRecieps(_ req: Request) throws -> ResponseRepresentable {
-        return try drop.view.make("signup")
-    }
+//    func findRecieps(_ req: Request) throws -> ResponseRepresentable {
+//        return try drop.view.make("signup")
+//    }
     
     func searchInIE(_ req: Request) throws -> ResponseRepresentable {
         
@@ -52,37 +52,37 @@ class RezeptsucheController {
 
         do {
             
-            print(Rezept.idKey)
-            print(Rezept.entity)
-            print(Rezept.idType)
-            print(Rezept.name)
-
 //            Rezept.database!.query(Rezept).filter()
             
             let query = try Rezept.makeQuery().filter("farbnummer", .contains, input)
 //            if let query = try Rezept.makeQuery().filter("field", .contains, input) {
             let count = try query.count()
             if (count > 0) {
+                let queryProducts = try Produkt.makeQuery().all()
+
+                var queryFetch : [Rezept] = []
                 
-                let queryFetch = try query.all()
+                do {
+                    
+                    queryFetch = try query.all()
+
+                } catch let error as NodeError {
+                    print(error.suggestedFixes)
+                }
                 
                 for (index, rezept) in queryFetch.enumerated() {
                     
-                    guard let prodCod = products[rezept.produkt] else {
+                    guard let product = try Produkt.find(rezept.produkt) else {
                         print("\(rezept.produkt) not found")
-                        break
+                        throw Abort.notFound
                     }
-                    guard let prodName = prodCod["name"] else {
-                        break
-                    }
-                    
-                    let result = Suchergebnis(farbton: rezept.farbton, kunde: rezept.kunde, farbnummer: rezept.farbnummer, rezeptID: rezept.rezeptID, produkt: prodName)
-                
+
+                    let result = Suchergebnis(farbton: rezept.farbton, kunde: rezept.kunde, farbnummer: rezept.farbnummer, rezeptID: rezept.rezeptID, produkt: product.name)
                 
                     JSONcontent.append(generateRecipeHtmlSniplet(match: result, currentItem: index))
                 }
             } else {
-                JSONcontent.append("nothing found for \(input)")
+                JSONcontent.append("Nessun risultato per \(input)")
             }
             
         
@@ -90,43 +90,13 @@ class RezeptsucheController {
             print(error.localizedDescription)
         }
         
-//        generateRecipeHtmlSniplet(match: match)
         
         JSONcontent.append((JSONcontent != "") ? "</div>" : "")
-        return JSONcontent != "" ? JSONcontent : "nothing found"
+        return JSONcontent != "" ? JSONcontent : "Nessun risultato"
         
     }
     
     
-//    <div class="rTable">
-//    <div class="rTableRow">
-//    <div class="rTableHead">
-//    <strong>Tinta</strong>
-//    </div>
-//    <div class="rTableHead">
-//    <span style="font-weight: bold;">Prodotto</span>
-//    </div>
-//    <div class="rTableHead">
-//    <span style="font-weight: bold;">Colore</span>
-//    </div>
-//    <div class="rTableHead">
-//    <span style="font-weight: bold;">Cliente</span>
-//    </div>
-//    </div>
-//    <div class="rTableRow">
-//    <div class="rTableCell">Ral 3003
-//    </div>
-//    <div class="rTableCell">
-//    Bluefin Softmatt
-//    </div> <div class="rTableCell">
-//    Blu
-//    </div>
-//    <div class="rTableCell">
-//    Mattioli
-//    </div>
-//
-//    </div>
-//    </div>
 
     
     func generateRecipeHtmlSniplet(match: Suchergebnis, currentItem: Int) -> String {
@@ -152,11 +122,6 @@ class RezeptsucheController {
         htmlLine.append(openTrHead + evenOrUneven(nr: currentItem) + openTrTail)
 
         for i in 0...3 {
-//            htmlLine.append(linkHead)
-//            htmlLine.append(openTd)
-//            htmlLine.append(match[i])
-//            htmlLine.append(closeTd)
-//            htmlLine.append(linkTail)
             
             htmlLine.append(openTd)
             htmlLine.append("<span>")
@@ -166,7 +131,6 @@ class RezeptsucheController {
             htmlLine.append("</span>")
             htmlLine.append(closeTd)
 
-            
         }
         htmlLine.append(closeTr)
 

@@ -1,6 +1,7 @@
 #embed("header")
 <body>
 #embed("navHeader")
+<div class="container text-centered">
 <h1>Import</h1>
 <p>Import data into the databases.</p>
 <div>
@@ -8,7 +9,12 @@
 <input name="recipeCollectionName" type="text" />
 <input type="file" name="myFile">
 
-<button type="submit" value="Submit">Submit</button>
+<label class="custom-file">
+<input type="file" id="file" class="custom-file-input">
+<span class="custom-file-control"></span>
+</label>
+
+<button type="submit" class="btn btn-primary" value="Submit">Submit</button>
 </form>
 </div>
 
@@ -18,8 +24,27 @@
 <p id="placeHere"></p>
 
 <form action="/deleteDatabase" method="POST" name="" id="eraseDatabase"">
-<button type="submit" value="Submit">Canella ricette</button>
+<button type="submit" value="Submit" class="btn btn-primary">Canella ricette</button>
 </form>
 
+
+<form action="/importProducts" enctype="multipart/form-data" method="POST" name="" id="products">
+<input type="file" name="myProducts">
+
+<button type="submit" value="Submit">Carica</button>
+</form>
+
+<h2>DB response:</h2>
+#(Produktanzahl)
+
+<p id="placeProductHere"></p>
+
+<form action="/deleteProducts" method="POST" name="" id="eraseProducts"">
+<button type="submit" value="submit" class="btn btn-primary">Canella prodotti</button>
+</form>
+
+
+</div>
+#embed("footer")
 </body>
 </html>

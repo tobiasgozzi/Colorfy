@@ -35,7 +35,9 @@ class RezeptAusleseController {
             indexes.append(i)
         }
         
-        return try drop.view.make("recipe", ["recipe" : try rezept.makeNode(in: nil), "anteile": rezept.anteile.makeNode(in: nil), "benutzerrechte" : req.auth.authenticated(Benutzer.self)?.benutzerechte, "indexes" : indexes])
+
+        
+        return try drop.view.make("recipe", ["recipe" : try rezept.makeNode(in: nil), "anteile": rezept.anteile.makeNode(in: nil), "benutzer" : req.auth.authenticated(Benutzer.self), "indexes" : indexes])
         
     }
     

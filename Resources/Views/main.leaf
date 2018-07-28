@@ -16,7 +16,7 @@
 <p>#(resultIE)</p>
 <p id="placeHere"></p>
 </div>
-<footer class="footer"><div class="container"><span class="text-muted" style="overflow:scroll;">Collegato con utenza #(benutzer.benutzerName) di livello #(benutzer.benutzerrechte)</span></div></footer>
+#embed("footer")
 <script src="recipeSearch.js"></script>
 <script>
 console.log(navigator.userAgent);

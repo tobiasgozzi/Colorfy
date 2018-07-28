@@ -81,12 +81,7 @@ final class BenutzerController {
         
         print(user.benutzerName + " authenticated")
         
-        return try drop.view.make("main",["benutzer": user])// Response(redirect: "/main", ["user": user.benutzerechte])
-        
-        //        let list = try Benutzer.all()
-        //        print(list.count)
-        //        print(list.last?.benutzerName)
-        //        return try drop.view.make("main", ["benutzer": list.makeNode(in: nil)])
+        return try drop.view.make("main",["benutzer": user])
     }
     
     func loadSecuredLogin(_ req: Request) throws -> ResponseRepresentable {

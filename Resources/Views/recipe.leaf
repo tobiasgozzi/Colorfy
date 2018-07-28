@@ -14,10 +14,12 @@
 <button type="submit" value="submit">Ricalcola</button>
 </form>
 
-#loop(anteile, "anteil") { <div class="rTableRow"><div class="rTableCell">#(anteil.produkt)</div><div class="rTableCell quantityField" id="#(index)" value="#(anteil.stringAnteil)"> #(anteil.stringAnteil)</div><div class="rTableCell"> #equal(benutzerrechte, "aministratore"){#(anteil.vkPreis)}</div><div class="rTableCell"> #equal(benutzerrechte, "aministratore"){#(anteil.kosten)}</div></div> }
+#loop(anteile, "anteil") { <div class="rTableRow"><div class="rTableCell">#(anteil.produkt)</div><div class="rTableCell quantityField" id="#(index)" value="#(anteil.stringAnteil)"> #(anteil.stringAnteil)</div><div class="rTableCell"> #equal(benutzer.benutzerrechte, "aministratore"){#(anteil.vKPreis)}</div><div class="rTableCell"> #equal(benutzer.benutzerrechte, "aministratore"){#(anteil.kosten)}</div></div> }
 <div>
-<p>#equal(benutzerrechte, "aministratore"){#(recipe.getPrice) - #(recipe.getCost)}##equal(benutzerrechte, "vendita"){#(recipe.getPrice) - #(recipe.getCost)}</p>
+<p>#equal(benutzer.benutzerrechte, "aministratore"){#(recipe.getPrice) - #(recipe.getCost)}##equal(benutzer.benutzerrechte, "vendita"){#(recipe.getPrice) - #(recipe.getCost)}</p>
 </div>
+#embed("footer")
+
 <script src="/updateQuantity.js"></script>
 
 <script>

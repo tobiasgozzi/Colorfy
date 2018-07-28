@@ -4,6 +4,10 @@
     <a href="/main">Cerca</a> |
     #equal(benutzer.benutzerrechte, "aministratore") {
     <a href="/import-page">Importazione</a> |
+    <a href="/insert-recipe">Crea ricetta nuova</a>
+    }
+    #equal(benutzer.benutzerrechte, "laboratorio") {
+    <a href="/insert-recipe">Crea ricetta nuova</a>
     }
 
 </nav>

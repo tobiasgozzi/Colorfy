@@ -1,0 +1,1 @@
+<footer class="footer"><div class="container"><span class="text-muted" style="overflow:scroll;">Collegato con utenza #(benutzer.benutzerName) di livello #(benutzer.benutzerrechte)</span></div></footer>

@@ -13,6 +13,7 @@ extension Droplet {
         let rezeptsuche = RezeptsucheController(drop: self)
         let importController = ImportController(drop: self)
         let rezeptausleseController = RezeptAusleseController(drop: self)
+        let rezepteingabeController = RezeptEingabeController(drop: self)
         
         //Signup View anzeigen
         get("signup", handler: benutzerController.getRegisterView)
@@ -79,6 +80,8 @@ extension Droplet {
         }
         
         authRoute.post("searchRecipe", handler: rezeptsuche.searchInIE)
+        authRoute.get("insert-recipe", handler: rezepteingabeController.showFormPage)
+        authRoute.post("sendNewRecipe", handler: rezepteingabeController.elaborateNewRecipe)
         
         authRoute.socket("allowUpdateQuantity", handler: rezeptausleseController.updateQuantity)
         
@@ -101,7 +104,7 @@ extension Droplet {
                     
                     let answer = rezeptsuche.compareRecipeWithSearchphrase(input: text)
                     
-                    print(text + " sent from client")
+                    print("\(text) sent from client. Server response \(answer)")
                     try ws.send(answer)
                 }
 
@@ -115,7 +118,8 @@ extension Droplet {
         
         
         authRoute.post("importDatabase", handler: importController.elaborateLoadedFile)
-
+        authRoute.post("importProducts", handler: importController.importProductsFromJson)
+        authRoute.post("deleteProducts", handler: importController.deleteProducts)
         authRoute.post("deleteDatabase", handler: importController.eraseDatabase)
 
         
