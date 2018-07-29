@@ -87,6 +87,7 @@ final class BenutzerController {
     func loadSecuredLogin(_ req: Request) throws -> ResponseRepresentable {
         print("reached main site")
         let user: Benutzer = try req.auth.assertAuthenticated()
+
         return try drop.view.make("main", ["benutzer": try user.makeNode(in: nil)])
     }
 }

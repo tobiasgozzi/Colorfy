@@ -2,30 +2,54 @@
 <body>
 #embed("navHeader")
 <div class="container text-centered">
-<h1>Compilazione/modifica ricetta</h1>
+<h1>Crea/modifica ricetta</h1>
 
 
 
 <div class="highlightBox">
 <form action="/sendNewRecipe" enctype="multipart/form-data" method="POST" id="quantity" name="newRecipe">
-<label for="collection">Collezione</label>
-<select name="collection" id="collection">
-<option value="">--selezionare una voce--</option>
-<option value="RAL">RAL</option>
-<option value="NCS">NCS</option>
-<option value="SF00">SF00</option>
-<option value="SF11">SF11</option>
-<option value="SIKKENS-3031">SIKKENS-3031</option>
-<option value="SIKKENS-5051">SIKKENS-5051</option>
-</select>
+
+<div class="form-group mt-3">
+    <label for="collection">Seleziona collezione</label>
+    <select class="form-control" id="collection" name="collection" >
+        <option value="">--selezionare una voce--</option>
+        <option value="RAL">RAL</option>
+        <option value="NCS">NCS</option>
+        <option value="SF00">SF01</option>
+        <option value="SF11">SF11</option>
+        <option value="SF11">SF12</option>
+        <option value="SIKKENS-3031">SIKKENS-3031</option>
+        <option value="SIKKENS-5051">SIKKENS-5051</option>
+    </select>
+</div>
+
 <br>
 
 <div class="input-group mb-2">
   <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">Tinta</span>
+    <span class="input-group-text" id="basic-addon1">Codice tinta</span>
   </div>
   <input type="text" class="form-control" name="tinta" placeholder="p.es. 0041-0718" aria-label="p.es. 0041-0718" aria-describesby="basic-addon1">
 </div>
+
+
+<div class="form-group">
+    <label for="selezioneColore">Seleziona colore</label>
+    <select class="form-control" id="selezioneColore" name="selezioneColore" >
+        <option value="">--seleziona un colore--</option>
+        <option value="giallo">giallo</option>
+        <option value="verde">verde</option>
+        <option value="marrone">marrone</option>
+        <option value="bianco">bianco</option>
+        <option value="beige">beige</option>
+        <option value="nero">nero</option>
+        <option value="metallizzato">metallizzato</option>
+        <option value="blu">blu</option>
+        <option value="rosso">rosso</option>
+        <option value="viola">viola</option>
+    </select>
+</div>
+
 
 <label for="product1">Prodotto base</label>
 <select name="product1" id="product1">
@@ -92,7 +116,17 @@
 <input name="quantity6" id="quantity6" placeholder="900" type="number">
 <br>
 
-<button type="submit" value="submit">Salva</button>
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="inputCliente">Cliente</span>
+    </div>
+    <input type="text" class="form-control" placeholder="cliente" name="cliente" aria-label="cliente" aria-describedby="inputCliente">
+</div>
+
+<br>
+<br>
+
+<button type="submit" value="submit" class="btn btn-primary">Salva</button>
 </form>
 </div>
 </div>

@@ -145,11 +145,13 @@ extension Rohstoffanteil: NodeRepresentable {
         try node.set("produkt", _produkt)
         try node.set("produktID", _produktID)
         try node.set("anteil", _anteil)
-        try node.set("kosten", getKosten())
-        
-        try node.set("vKPreis", getVKPreis())
+        try node.set("kosten", String(format: "%.2f", getKosten()))
+
+        try node.set("vKPreis", String(format: "%.2f", getVKPreis()))
+
         let stringAnteil = String(format: "%.2f", _anteil)
         try node.set("stringAnteil", stringAnteil)
+
         try node.set("rezeptID", rezeptID)
         return node
     }

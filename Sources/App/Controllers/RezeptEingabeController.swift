@@ -46,8 +46,14 @@ class RezeptEingabeController {
             guard let mainProduct = data["product1"]?.string else {
                 return try drop.view.make("insert-recipe")
             }
+            guard let cliente = data["cliente"]?.string else {
+                return try drop.view.make("insert-recipe")
+            }
+            guard let colore = data["selezioneColore"]?.string else {
+                return try drop.view.make("insert-recipe")
+            }
 
-            let rezept = Rezept(produkt: mainProduct , farbnummer: colorName, farbton: "", anteil: [], kunde: "", collection: collection)
+            let rezept = Rezept(produkt: mainProduct , farbnummer: colorName, farbton: colore, anteil: [], kunde: cliente, collection: collection)
             
             rezeptIDforRedirection = rezept.rezeptID
             

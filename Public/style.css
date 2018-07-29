@@ -15,7 +15,7 @@
     padding:5px;
 }
 
-$custom-file-text: (
+.custom-file-text: (
 placeholder: (
 en: "Choose file...",
 es: "Seleccionar archivo..."
@@ -93,20 +93,43 @@ body {
     /*margin:0px;*/
 }
 
+div.container {
+    padding-bottom:50px;
+}
+
 nav {
+    /*background-color: #50D0FE;
+    color: #F2F2F2;
+    
+    top:0px;
+    left:0px;
+    right:0px;*/
+    padding:10px;
+    margin:0px;
+/*    width: 100%;*/
+}
+
+nav a {
+    color:white;
+}
+.nav-flex-container {
     position: fixed;
+    z-index:100;
+
     background-color: #50D0FE;
     color: #F2F2F2;
-
     top:0px;
     left:0px;
     right:0px;
-    
-    padding:10px;
-    margin:0px;
-    width: 100%;
-    z-index:100;
+
 }
+
+#navUser {
+    float:right;
+    /*vertical-align:middle;*/
+    line-height:3;
+}
+
 #navSpacer {
     margin-top:100px;
 }
@@ -114,6 +137,15 @@ nav {
     background-color:#ffffff;
     padding:5px;
 }
+
+fieldset {
+    border-color:#50D0FE;
+    border-style: solid;
+    border-radius:3px;
+    border-width:1px;
+    padding:20px;
+}
+
 .footer {
     position:fixed;
     bottom:0;

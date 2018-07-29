@@ -2,49 +2,38 @@
 <body>
 #embed("navHeader")
 <div class="container text-centered">
-<h1>Import</h1>
-<p>Import data into the databases.</p>
+<h1>Importazione di massa</h1>
+<p>Con questa pagina l'utente può importare ricette e prodotti tramite file, come anche eliminare ogni dato. Attenzione modifiche nel database sono permanenti e non possono essere ripristinate.</p>
+<fieldset>
+<legend>Ricette</legend>
+
 <div>
 <form action="/importDatabase" enctype="multipart/form-data" method="POST" name="" id="database">
 <input name="recipeCollectionName" type="text" />
 <input type="file" name="myFile">
-
-<label class="custom-file">
-<input type="file" id="file" class="custom-file-input">
-<span class="custom-file-control"></span>
-</label>
-
-<button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+<button type="submit" class="btn btn-primary" value="Submit">Carica ricette</button>
 </form>
 </div>
-
-<h2>DB response:</h2>
-#(rezeptanzahl)
-
+<p>Ricette salvate nel database: #(rezeptanzahl)</p>
 <p id="placeHere"></p>
-
 <form action="/deleteDatabase" method="POST" name="" id="eraseDatabase"">
-<button type="submit" value="Submit" class="btn btn-primary">Canella ricette</button>
+<button type="submit" value="Submit" class="btn btn-primary">Cancella ricette</button>
 </form>
-
-
+</fieldset>
+<fieldset>
+<legend>Prodotti</legend>
 <form action="/importProducts" enctype="multipart/form-data" method="POST" name="" id="products">
-<input type="file" name="myProducts">
-
-<button type="submit" value="Submit">Carica</button>
+<input type="file" name="myProducts" class="btn btn-primary">
+<button type="submit" class="btn btn-primary" value="Submit">Carica prodotti</button>
 </form>
-
-<h2>DB response:</h2>
-#(Produktanzahl)
-
+<p>Prodotti presenti nel database: #(Produktanzahl)</p>
 <p id="placeProductHere"></p>
-
 <form action="/deleteProducts" method="POST" name="" id="eraseProducts"">
-<button type="submit" value="submit" class="btn btn-primary">Canella prodotti</button>
+<button type="submit" value="submit" class="btn btn-primary">Cancella prodotti</button>
 </form>
-
-
+</fieldset>
 </div>
 #embed("footer")
 </body>
 </html>
+

@@ -1,3 +1,4 @@
+<div class="flex-container nav-flex-container">
 <nav>
     <a class="navbar-brand ml-2"><img src="/Colorfy-nav.png"> </a>
     <a href="/logout">Esci</a> |
@@ -9,6 +10,8 @@
     #equal(benutzer.benutzerrechte, "laboratorio") {
     <a href="/insert-recipe">Crea ricetta nuova</a>
     }
+    <a id="navUser" href="/userInfo">Utente</a>
 
 </nav>
+</div>
 <div id="navSpacer"></div>
