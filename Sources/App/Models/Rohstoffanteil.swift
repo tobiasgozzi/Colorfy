@@ -25,7 +25,6 @@ class Rohstoffanteil : Model {
         
         self._produkt = prod.name
         self._produktID = prod.returnProductID().string
-        print("\(prod.returnProductID().string) is returned from product")
         self._anteil = parts
         //self.id = Identifier.string(id.string! + prod.returnProductID().string)
 //        self._grundpreisEK = prod.kosten
@@ -160,7 +159,6 @@ extension Rohstoffanteil: NodeRepresentable {
 extension Rohstoffanteil {
     
     var owner: Parent<Rohstoffanteil, Rezept> {
-        print("\(rezeptID) is parent id")
         return parent(id: rezeptID)
     }
 }

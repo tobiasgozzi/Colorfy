@@ -17,7 +17,7 @@
 <p>Ricette salvate nel database: #(rezeptanzahl)</p>
 <p id="placeHere"></p>
 <form action="/deleteDatabase" method="POST" name="" id="eraseDatabase"">
-<button type="submit" value="Submit" class="btn btn-primary">Cancella ricette</button>
+<button type="submit" value="Submit" class="btn btn-primary" style="background-color:orangered;">Cancella ricette</button>
 </form>
 </fieldset>
 <fieldset>
@@ -29,7 +29,7 @@
 <p>Prodotti presenti nel database: #(Produktanzahl)</p>
 <p id="placeProductHere"></p>
 <form action="/deleteProducts" method="POST" name="" id="eraseProducts"">
-<button type="submit" value="submit" class="btn btn-primary">Cancella prodotti</button>
+<button type="submit" value="submit" class="btn btn-primary" style="background-color:orangered;">Cancella prodotti</button>
 </form>
 </fieldset>
 </div>

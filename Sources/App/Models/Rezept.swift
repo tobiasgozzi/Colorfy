@@ -21,7 +21,6 @@ class Rezept: Model {
     init(produkt : String, farbnummer : String, farbton : String, anteil : [Rohstoffanteil],/* typ: Rezepttyp,*/ kunde: String, collection: String ) {
         
         let id = collection + produkt.replacingOccurrences(of: " ", with: "_") + farbnummer.replacingOccurrences(of: " ", with: "_")
-        print("### \(id) is id")
         self.id = Identifier.string(id.replacingOccurrences(of: ".", with: "-"))
         self.rezeptID = id
         self.farbnummer = farbnummer
