@@ -15,9 +15,9 @@
         <option value="">--selezionare una voce--</option>
         <option value="RAL">RAL</option>
         <option value="NCS">NCS</option>
-        <option value="SF00">SF01</option>
-        <option value="SF11">SF11</option>
-        <option value="SF11">SF12</option>
+        <option value="SF">SF</option>
+        <option value="SF-B">SF-B</option>
+        <option value="SF-L">SF-L</option>
         <option value="SIKKENS-3031">SIKKENS-3031</option>
         <option value="SIKKENS-5051">SIKKENS-5051</option>
     </select>
@@ -37,17 +37,28 @@
     <label for="selezioneColore">Seleziona colore</label>
     <select class="form-control" id="selezioneColore" name="selezioneColore" >
         <option value="">--seleziona un colore--</option>
-        <option value="giallo">giallo</option>
-        <option value="verde">verde</option>
-        <option value="marrone">marrone</option>
         <option value="bianco">bianco</option>
         <option value="beige">beige</option>
+        <option value="beige scuro">beige scuro</option>
+        <option value="rosa">rosa</option>
+
+        <option value="rosso">rosso</option>
+        <option value="bordeaux">bordeaux</option>
+        <option value="viola">viola</option>
+<option value="verde chiaro">verde chiaro</option>
+<option value="verde scuro">verde scuro</option>
+<option value="blu chiaro">blu chiaro</option>
+<option value="blu scuro">blu scuro</option>
+<option value="giallo limone">giallo limone</option>
+<option value="giallo sole">giallo sole</option>
+<option value="giallo chiaro">giallo chiaro</option>
+<option value="grigio medio">grigio medio</option>
+<option value="grigio scuro">grigio scuro</option>
+<option value="marrone chiaro">marrone chiaro</option>
+<option value="marrone scuro">marrone scuro</option>
         <option value="nero">nero</option>
         <option value="metallizzato">metallizzato</option>
-        <option value="blu">blu</option>
-        <option value="rosso">rosso</option>
-        <option value="viola">viola</option>
-    </select>
+</select>
 </div>
 
 

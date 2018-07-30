@@ -6,7 +6,7 @@
 <div>
     <form id="form">
     <!--<form action="/searchRecipe" method="POST" name="" id="searchterm">-->
-<input id="searchTermText" class="form-control" style="display:inline;width:70%;" "type="text" />
+<input id="searchTermText" class="form-control" style="display:inline;width:70%;" type="text" />
         <button type="submit" class="btn btn-primary" value="Submit">Cerca</button>
     </form>
 </div>

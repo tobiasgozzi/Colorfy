@@ -22,23 +22,6 @@ extension Droplet {
         post("signup", handler: benutzerController.saveUser)
         
         
-        //User versucht login
-        //post("login", handler: benutzerController.loginUser)  // added
-        
-        //LoginSeite wird aufgerufen
-        
-        
-//        self.get("erase") { req -> ResponseRepresentable in
-//
-//            return try self.view.make("signup")
-//        }
-        
-        //
-        //get("main", handler: benutzerController.showMain)
-        //post("main", handler: benutzerController.showMain)
-        
-        
-        
         let persistMW = PersistMiddleware(Benutzer.self)
         let memory = MemorySessions()
         let sessionMW = SessionsMiddleware(memory)
