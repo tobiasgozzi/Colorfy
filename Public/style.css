@@ -15,14 +15,19 @@
     padding:5px;
 }
 
+
+.background-row-primary {
+    background-color: #50D0FE;
+}
+
 .custom-file-text: (
 placeholder: (
 en: "Choose file...",
-es: "Seleccionar archivo..."
+it: "Seleziona file..."
 ),
 button-label: (
 en: "Browse",
-es: "Navegar"
+it: "Cerca"
 )
 );
 

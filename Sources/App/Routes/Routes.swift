@@ -55,7 +55,7 @@ extension Droplet {
         authRoute.get("recipe", ":recipe", handler: rezeptausleseController.showRecipe)
         
         authRoute.get("logout", handler: benutzerController.logoutUser)
-
+        authRoute.get("userInfo", handler: benutzerController.showUserInfoPage)
         authRoute.post("deleteUsers") { (req) in
             try Benutzer.revert(Benutzer.database!)
             print(try Benutzer.count())
@@ -64,11 +64,13 @@ extension Droplet {
         
         authRoute.post("searchRecipe", handler: rezeptsuche.searchInIE)
         authRoute.get("insert-recipe", handler: rezepteingabeController.showFormPage)
+        authRoute.post("modifyRecipe", handler: rezepteingabeController.showFormPage)
+        
         authRoute.post("sendNewRecipe", handler: rezepteingabeController.elaborateNewRecipe)
         
         authRoute.socket("allowUpdateQuantity", handler: rezeptausleseController.updateQuantity)
         
-        authRoute.socket("updateRecipe") { (req, ws) in
+        authRoute.socket("lookForRecipe") { (req, ws) in
             
             let userAgent = req.headers["User-Agent"]
             print(userAgent)
@@ -87,7 +89,6 @@ extension Droplet {
                     
                     let answer = rezeptsuche.compareRecipeWithSearchphrase(input: text)
                     
-                    print("\(text) sent from client. Server response \(answer)")
                     try ws.send(answer)
                 }
 

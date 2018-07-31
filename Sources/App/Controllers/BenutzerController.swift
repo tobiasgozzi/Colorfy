@@ -90,6 +90,13 @@ final class BenutzerController {
 
         return try drop.view.make("main", ["benutzer": try user.makeNode(in: nil)])
     }
+    
+    func showUserInfoPage(_ req: Request) throws -> ResponseRepresentable {
+        
+        
+        let user: Benutzer = try req.auth.assertAuthenticated()
+        return try drop.view.make("userInfo", ["benutzer": try user.makeNode(in: nil)])
+    }
 }
 
 

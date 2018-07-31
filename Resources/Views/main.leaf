@@ -23,7 +23,7 @@ console.log(navigator.userAgent);
 console.log(/*@cc_on!@*/false || !!document.documentMode);
 
 if (!(/*@cc_on!@*/false || !!document.documentMode)) {
-var subApp = new RecipeFinder(window.location.host + "/updateRecipe");
+var subApp = new RecipeFinder(window.location.host + "/lookForRecipe");
 } else {
 document.getElementById("form").setAttribute("action","/searchRecipe");
 document.getElementById("form").setAttribute("method","POST");

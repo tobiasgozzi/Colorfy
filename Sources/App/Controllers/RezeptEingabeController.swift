@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import HTTP
+import Vapor
 
 
 class RezeptEingabeController {
@@ -17,7 +19,27 @@ class RezeptEingabeController {
     
     func showFormPage(_ req: Request) throws -> ResponseRepresentable {
         var productsArray : [Produkt] = try Produkt.makeQuery().all()
+        
+        var rezept: Rezept?
+        
+        do {
+            guard let recipeParam = req.formURLEncoded?["rezeptID"] else {
+                throw ParserError.invalidMessage
+            }
+            
+            print("\(recipeParam.wrapped)")
 
+            guard let foundProduct = try Rezept.makeQuery().find(recipeParam.wrapped) else {
+                print("could not find the recipe")
+                throw ParserError.invalidMessage
+            }
+            
+            rezept = foundProduct
+            
+        } catch let error {
+            error.localizedDescription
+        }
+        
         productsArray.sort { (prA, prB) -> Bool in
             return prA.name > prB.name
         }
@@ -27,7 +49,14 @@ class RezeptEingabeController {
         
         let user : Benutzer = try req.auth.assertAuthenticated()
 
-        return try drop.view.make("insert-recipe",["products":productsArray, "benutzer" : user])
+        guard let rezeptPassedAsParam = rezept else {
+            print("no product passed as param to modify")
+            return try drop.view.make("insert-recipe",["products":productsArray, "benutzer" : user])
+
+        }
+        
+
+        return try drop.view.make("insert-recipe",["products":productsArray, "benutzer" : user, "modifyProduct" : rezeptPassedAsParam])
     }
     
     func elaborateNewRecipe(_ req :Request) throws -> ResponseRepresentable {

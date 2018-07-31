@@ -1,0 +1,43 @@
+#embed("header")
+<body>
+#embed("navHeader")
+<div class="container text-centered"><h1 class="mb-5">Info utente</h1>
+<p><strong>Username:</strong> #(benutzer.benutzerName)</p>
+<p><strong>Diritti d'accesso:</strong> #(benutzer.benutzerrechte)</p>
+<p><strong>Password:</strong> #(benutzer.password)</p>
+<form action="/updatePassword" method="POST" name="updatePassword">
+
+<div class="container">
+<div class="row">
+    <div class="col-md-4">
+        <label for="pwd" class="mr-2">Nuova password</label>
+    </div>
+    <div class="col-md">
+        <input type="password" name="pwd">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+    <label for="pwdConfirmation" class="mr-2">Conferma password</label>
+    </div>
+    <div class="col-md">
+        <input type="password" name="pwdConfirmation">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md mt-3">
+        <input class="btn btn-primary" type="submit" value="Cambia password">
+    </div>
+</div>
+</div>
+</form>
+
+
+
+</div>
+#embed("footer")
+
+
+
+</body>
+</html>

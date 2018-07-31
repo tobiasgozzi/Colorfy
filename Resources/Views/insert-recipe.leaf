@@ -13,13 +13,13 @@
     <label for="collection">Seleziona collezione</label>
     <select class="form-control" id="collection" name="collection" >
         <option value="">--selezionare una voce--</option>
-        <option value="RAL">RAL</option>
-        <option value="NCS">NCS</option>
-        <option value="SF">SF</option>
-        <option value="SF-B">SF-B</option>
-        <option value="SF-L">SF-L</option>
-        <option value="SIKKENS-3031">SIKKENS-3031</option>
-        <option value="SIKKENS-5051">SIKKENS-5051</option>
+        <option value="RAL" #equal(modifyProduct.kollektion, "RAL"){selected}>RAL</option>
+        <option value="NCS" #equal(modifyProduct.kollektion, "NCS"){selected}>NCS</option>
+        <option value="SF" #equal(modifyProduct.kollektion, "SF"){selected}>SF</option>
+        <option value="SF-B" #equal(modifyProduct.kollektion, "SF-B"){selected}>SF-B</option>
+        <option value="SF-L" #equal(modifyProduct.kollektion, "SF-L"){selected}>SF-L</option>
+        <option value="SIKKENS-3031" #equal(modifyProduct.kollektion, "SIKKENS-3031"){selected}>SIKKENS-3031</option>
+        <option value="SIKKENS-5051" #equal(modifyProduct.kollektion, "SIKKENS-5051"){selected}>SIKKENS-5051</option>
     </select>
 </div>
 
@@ -29,7 +29,7 @@
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Codice tinta</span>
   </div>
-  <input type="text" class="form-control" name="tinta" placeholder="p.es. 0041-0718" aria-label="p.es. 0041-0718" aria-describesby="basic-addon1">
+<input type="text" class="form-control" name="tinta" placeholder="p.es. 0041-0718" aria-label="p.es. 0041-0718" aria-describesby="basic-addon1" value="#(modifyProduct.farbnummer)">
 </div>
 
 
@@ -45,13 +45,14 @@
         <option value="rosso">rosso</option>
         <option value="bordeaux">bordeaux</option>
         <option value="viola">viola</option>
-<option value="verde chiaro">verde chiaro</option>
+        <option value="verde chiaro">verde chiaro</option>
 <option value="verde scuro">verde scuro</option>
 <option value="blu chiaro">blu chiaro</option>
 <option value="blu scuro">blu scuro</option>
 <option value="giallo limone">giallo limone</option>
 <option value="giallo sole">giallo sole</option>
 <option value="giallo chiaro">giallo chiaro</option>
+<option value="grigio chiaro">grigio chiaro</option>
 <option value="grigio medio">grigio medio</option>
 <option value="grigio scuro">grigio scuro</option>
 <option value="marrone chiaro">marrone chiaro</option>
