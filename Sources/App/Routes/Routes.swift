@@ -61,6 +61,7 @@ extension Droplet {
             print(try Benutzer.count())
             return try self.view.make("signup")
         }
+        authRoute.post("updatePassword", handler: benutzerController.updatePassword)
         
         authRoute.post("searchRecipe", handler: rezeptsuche.searchInIE)
         authRoute.get("insert-recipe", handler: rezepteingabeController.showFormPage)

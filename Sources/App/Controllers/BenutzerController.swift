@@ -97,6 +97,29 @@ final class BenutzerController {
         let user: Benutzer = try req.auth.assertAuthenticated()
         return try drop.view.make("userInfo", ["benutzer": try user.makeNode(in: nil)])
     }
+    
+    func updatePassword(_ req : Request) throws -> ResponseRepresentable {
+        
+        let user: Benutzer = try req.auth.assertAuthenticated()
+        
+        if let newPassword = req.formURLEncoded?["pwd"] {
+            if let confirmPassword = req.formURLEncoded?["pwdConfirmation"] {
+                print("password is the same \(newPassword == confirmPassword): \(newPassword.wrapped)")
+                
+                if let checkedPw = newPassword.wrapped.string, checkedPw != "" && checkedPw.count>3 {
+                    user.benutzerPW = checkedPw
+                    try user.save()
+                    return try drop.view.make("userInfo", ["benutzer": try user.makeNode(in: nil), "message" : "Password aggiornata con successo.", "result" : "success" ])
+                } else {
+                    return try drop.view.make("userInfo", ["benutzer": try user.makeNode(in: nil), "message" : "Password troppo corto, deve contenere almeno 3 caratteri.", "result" : "tooShort" ])
+
+                }
+                
+            }
+        }
+        
+        return try drop.view.make("userInfo", ["benutzer": try user.makeNode(in: nil), "message" : "Errore durante il salvataggio.", "result" : "error" ])
+    }
 }
 
 

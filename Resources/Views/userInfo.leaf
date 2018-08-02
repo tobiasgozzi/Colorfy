@@ -26,12 +26,28 @@
 </div>
 <div class="row">
     <div class="col-md mt-3">
-        <input class="btn btn-primary" type="submit" value="Cambia password">
+        <input class="btn btn-primary" type="submit" value="Cambia password"> <p>
     </div>
 </div>
 </div>
 </form>
-
+#equal(result, "success") {
+    <div class="alert alert-success" role="alert">
+    #(message)
+    </div>
+} ##equal(result,"tooShort") {
+    <div class="alert alert-warning" role="alert">
+    #(message)
+    </div>
+} ##equal(result, "error") {
+    <div class="alert alert-danger" role="alert">
+    #(message)
+    </div>
+} ##else() {
+    <div class="alert alert-danger" role="alert">
+    Errore non categorizzato. Contattare l'amministratore di sistema.
+    </div>
+}
 
 
 </div>
