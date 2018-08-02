@@ -49,14 +49,23 @@ class RezeptEingabeController {
         
         let user : Benutzer = try req.auth.assertAuthenticated()
 
+        
         guard let rezeptPassedAsParam = rezept else {
             print("no product passed as param to modify")
             return try drop.view.make("insert-recipe",["products":productsArray, "benutzer" : user])
-
         }
         
-
-        return try drop.view.make("insert-recipe",["products":productsArray, "benutzer" : user, "modifyProduct" : rezeptPassedAsParam])
+        var indexes : [Int] = []
+        
+        for ind in 0 ..< rezeptPassedAsParam.anteile.count {
+            indexes.append(ind)
+        }
+        
+        let sortedAnteile = rezeptPassedAsParam.anteile.sorted { (rl, rr) -> Bool in
+            return rl.produkt > rr.produkt
+        }
+        
+        return try drop.view.make("insert-recipe",["products":productsArray, "benutzer" : user, "modifyProduct" : rezeptPassedAsParam, "updateMode" : true, "modifyParts" : sortedAnteile, "partIndex" : indexes])
     }
     
     func elaborateNewRecipe(_ req :Request) throws -> ResponseRepresentable {
@@ -65,20 +74,25 @@ class RezeptEingabeController {
         if let data = req.formData {
             
             guard let colorName = data["tinta"]?.string else {
+                print("no tinta found")
                 return try drop.view.make("insert-recipe")
             }
             
             guard let collection = data["collection"]?.string else {
-                return try drop.view.make("insert-recipe")
+                print("no collection found")
+                return try drop.get("insert-recipe")
             }
             
             guard let mainProduct = data["product1"]?.string else {
+                print("no product 1 found")
                 return try drop.view.make("insert-recipe")
             }
             guard let cliente = data["cliente"]?.string else {
+                print("no cliente found")
                 return try drop.view.make("insert-recipe")
             }
             guard let colore = data["selezioneColore"]?.string else {
+                print("no selezioneColore found")
                 return try drop.view.make("insert-recipe")
             }
 
@@ -106,6 +120,20 @@ class RezeptEingabeController {
             }
             
             rezept.anteile = parts
+            
+            
+            //deletes old recipe if data has been modified
+            if let oldRecipe = try Rezept.makeQuery().find(rezept.rezeptID) {
+                for oldPart in oldRecipe.anteile {
+                    let connected = try Rohstoffanteil.makeQuery().find(oldPart.id)
+                    try connected?.delete()
+                    
+                    print("old part deleted")
+                }
+                oldRecipe.anteile.removeAll()
+                try oldRecipe.delete()
+                print("old recipe deleted")
+            }
             
             try rezept.save()
 

@@ -35,9 +35,11 @@ class RezeptAusleseController {
             indexes.append(i)
         }
         
-
+        let sortedAnteile = rezept.anteile.sorted { (rl, rr) -> Bool in
+            return rl.produkt > rr.produkt
+        }
         
-        return try drop.view.make("recipe", ["recipe" : try rezept.makeNode(in: nil), "anteile": rezept.anteile.makeNode(in: nil), "benutzer" : req.auth.authenticated(Benutzer.self), "indexes" : indexes])
+        return try drop.view.make("recipe", ["recipe" : try rezept.makeNode(in: nil), "anteile": sortedAnteile, "benutzer" : req.auth.authenticated(Benutzer.self), "indexes" : indexes])
         
     }
     
