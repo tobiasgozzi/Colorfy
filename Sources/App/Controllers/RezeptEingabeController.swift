@@ -87,14 +87,9 @@ class RezeptEingabeController {
                 print("no product 1 found")
                 return try drop.view.make("insert-recipe")
             }
-            guard let cliente = data["cliente"]?.string else {
-                print("no cliente found")
-                return try drop.view.make("insert-recipe")
-            }
-            guard let colore = data["selezioneColore"]?.string else {
-                print("no selezioneColore found")
-                return try drop.view.make("insert-recipe")
-            }
+            let cliente = (data["cliente"]?.string != nil) ? data["cliente"]!.string! : ""
+            
+            let colore = (data["selezioneColore"]?.string != nil) ? data["selezioneColore"]!.string! : ""
 
             let rezept = Rezept(produkt: mainProduct , farbnummer: colorName, farbton: colore, anteil: [], kunde: cliente, collection: collection)
             
