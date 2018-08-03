@@ -10,7 +10,9 @@
                 <input name="password" type="password" class="form-control"><br>
                 <input value="Accedi" type="submit" class="btn btn-primary">
             </form>
+            <div#(resultType)>#(loginResult)</div>
         </div>
+
         <p class="text-center"><small>Questo sito utilizza cookies per tracciare gli utenti e i vari livelli di permessi. Bisogna permettere questa funzionalità per procedere. In caso contrario non si riesce ad utilizzare il sito.</small</p>
     </div>
 </div>

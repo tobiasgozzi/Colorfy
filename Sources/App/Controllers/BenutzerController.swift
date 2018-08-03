@@ -70,18 +70,31 @@ final class BenutzerController {
                 return "either email or password is missing"
         }
         let credentials = Password(username: username, password: password)
-        // returns matching user (throws error if user doesn't exist)
-        print("about to try authentification for \(username)")
 
-        let user = try Benutzer.authenticate(credentials)
 
-        // persists user and creates a session cookie
-        req.auth.authenticate(user)
+        let benutzer = try Benutzer.makeQuery().filter("benutzerName", username).all()
         
-        
-        print(user.benutzerName + " authenticated")
-        
-        return try drop.view.make("main",["benutzer": user])
+        if (benutzer.count > 0) {
+            do {
+                // returns matching user (throws error if user doesn't exist)
+                
+                let user = try Benutzer.authenticate(credentials)
+                
+                // persists user and creates a session cookie
+                let authenticatedUser = req.auth.authenticate(user)
+                
+                return try drop.view.make("main",["benutzer": user])
+                
+            } catch {
+                let message = "Password sbagliata"
+                let divAttributes = " class=\"alert alert-danger\" role=\"alert\""
+                return try drop.view.make("login",["loginResult" : message, "resultType" : divAttributes])
+            }
+        } else {
+            let message = "Utente non trovato"
+            let divAttributes = " class=\"alert alert-danger\" role=\"alert\""
+            return try drop.view.make("login",["loginResult" : message, "resultType" : divAttributes])
+        }
     }
     
     func loadSecuredLogin(_ req: Request) throws -> ResponseRepresentable {

@@ -44,9 +44,6 @@
     #(message)
     </div>
 } ##else() {
-    <div class="alert alert-danger" role="alert">
-    Errore non categorizzato. Contattare l'amministratore di sistema.
-    </div>
 }
 
 
