@@ -110,7 +110,7 @@ extension Produkt: NodeRepresentable {
 
 
 
-extension Produkt : Hashable {
+extension Produkt : Hashable, Equatable {
     
     var hashValue: Int {
         return name.hashValue
@@ -121,6 +121,4 @@ extension Produkt : Hashable {
     }
 }
 
-extension Produkt : Equatable {
-     
-}
+

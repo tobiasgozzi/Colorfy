@@ -24,7 +24,8 @@ class ImportController {
 
     
     func elaborateLoadedFile(_ req: Request) throws -> ResponseRepresentable {
-        
+        let prodArray = try Produkt.all()
+
         
         let collectionName = req.formData?["recipeCollectionName"]?.string
         print("\(req.formData?["myFile"]?.filename) importing into \(collectionName)")
@@ -39,7 +40,7 @@ class ImportController {
             if let root = xmlDoc.rootElement() {
                 if let rootChildren = root.children {
                     
-                    for recordNodes in rootChildren {
+                    singleProd: for recordNodes in rootChildren {
                         
                         
                         if let leafes = recordNodes.children {
@@ -54,7 +55,7 @@ class ImportController {
                             for (leafindex, leaf) in leafes.enumerated() {
 
                                         if let name = leaf.name, let val = leaf.stringValue {
-                                            //print("\(leafindex) is current index with value \(name) and \(val)")
+//                                            print("\(leafindex) is current index with value \(name) and \(val)")
                                             switch name {
                                                 
                                             case "codiceTinta":
@@ -69,15 +70,39 @@ class ImportController {
                                                 parts[mainProduct] = nextSibling
                                                 break;
                                             case "p1","p2","p3","p4","p5","p6":
-                                                //print("P \(name) \(val)")
+//                                                print("P \(name) \(val)")
                                                 if val == "" || val == " " {
                                                     break;
                                                 }
-                                                let nextSibling : Float = (leafes[leafindex + 1].child(at: 0)?.stringValue!.float!)!
-                                                //print("--- \(nextSibling)")
 
-                                                tempProdukt = val
-                                                parts[tempProdukt] = nextSibling
+
+                                                if (leafes.count > (leafindex + 1) ) {
+                                                    if let nextSibling = (leafes[leafindex + 1].child(at: 0)?.stringValue) {
+                                                        if let floatVal = nextSibling.float {
+                                                            if parts[tempProdukt] != nil {
+
+                                                                tempProdukt = val
+                                                                parts[tempProdukt] = floatVal
+                                                            }
+                                                        }
+                                                    }
+
+                                                }
+
+
+//                                                if let nextSibling = (leafes[leafindex + 1].child(at: 0)?.stringValue) {
+//                                                    if let floatVal = nextSibling.float {
+//                                                        print("level1")
+//                                                        if parts[tempProdukt] != nil {
+//                                                            print("level2")
+//                                                            tempProdukt = val
+//                                                            print("level3")
+//                                                            parts[tempProdukt] = floatVal
+//                                                            print("level4")
+//                                                        }
+//                                                    }
+//                                                }
+
                                                 break;
                                             default:
                                                 
@@ -91,13 +116,20 @@ class ImportController {
                             
                             
                             for part in parts {
-
-                                if let querriedProd = try Produkt.find(part.key.trim()) {
+                                if prodArray.contains(Produkt(produktID: part.key.trim(), name: "")) {
                                     
-                                    rohstoffanteile[querriedProd] = part.value
+                                    let matchingProdArray = prodArray.filter { (prod) -> Bool in
+                                        return prod == (Produkt(produktID: part.key.trim(), name: ""))
+                                    }
+                                    
+//                                if let querriedProd = try Produkt.find(part.key.trim()) {
+                                    if (matchingProdArray.count > 0) {
+                                        rohstoffanteile[matchingProdArray[0]] = part.value
+                                    }
 //                                    print("\(part.key) found")
                                 } else {
                                     print("\(part.key) not found in products")
+                                    continue singleProd
                                 }
                             }
                             
@@ -121,9 +153,11 @@ class ImportController {
                         
                         
                             do {
-                                
-                                try rezept.save()
-                                
+                                if let existingRecipe = try Rezept.makeQuery().find(rezept.id) {
+                                    print("\(existingRecipe.id?.wrapped) already in database")
+                                } else {
+                                    try rezept.save()
+                                }
                                 
                             } catch let err as NodeError {
                                 print("\(err.debugDescription) \(err.printable) prevented to save recipe")

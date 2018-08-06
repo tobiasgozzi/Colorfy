@@ -10,7 +10,7 @@
 <div>
 <form action="/importDatabase" enctype="multipart/form-data" method="POST" name="" id="database">
 <input name="recipeCollectionName" type="text" />
-<input type="file" class="custom-file-input" name="myFile">
+<input type="file" class="btn btn-primary" name="myFile">
 <label class="custom-file-label for="myFile">Seleziona file</label>
 
 <button type="submit" class="btn btn-primary" value="Submit">Carica ricette</button>
