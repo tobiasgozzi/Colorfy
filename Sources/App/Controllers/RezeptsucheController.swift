@@ -22,16 +22,16 @@ class RezeptsucheController {
 //        return try drop.view.make("signup")
 //    }
     
-    func searchInIE(_ req: Request) throws -> ResponseRepresentable {
-        
-        
-        let answer = compareRecipeWithSearchphrase(input: (req.formURLEncoded?["searchTermText"]?.string)!)
-        drop.log.info((req.auth.authenticated(Benutzer.self)?.benutzerID)!)
-        drop.log.info((req.formURLEncoded?["searchTermText"]?.string)!)
-        print(try drop.view.make("main", ["resultIE": answer]).makeResponse().headers["Authorization"])
-        return try drop.view.make("main", ["resultIE": answer, "titelRicettetrovate" : "Ricette trovate"])
-        
-    }
+//    func searchInIE(_ req: Request) throws -> ResponseRepresentable {
+//        
+//        
+//        let answer = compareRecipeWithSearchphrase(input: (req.formURLEncoded?["searchTermText"]?.string)!)
+//        drop.log.info((req.auth.authenticated(Benutzer.self)?.benutzerID)!)
+//        drop.log.info((req.formURLEncoded?["searchTermText"]?.string)!)
+//        print(try drop.view.make("main", ["resultIE": answer]).makeResponse().headers["Authorization"])
+//        return try drop.view.make("main", ["resultIE": answer, "titelRicettetrovate" : "Ricette trovate"])
+//        
+//    }
     
     func filterResults(){
         for item in suchergebnis {

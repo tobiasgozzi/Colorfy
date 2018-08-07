@@ -19,7 +19,7 @@
 #embed("footer")
 <script src="recipeSearch.js"></script>
 <script>
-console.log(navigator.userAgent);
+<!--console.log(navigator.userAgent);
 console.log(/*@cc_on!@*/false || !!document.documentMode);
 
 if (!(/*@cc_on!@*/false || !!document.documentMode)) {
@@ -28,7 +28,7 @@ var subApp = new RecipeFinder(window.location.host + "/lookForRecipe");
 document.getElementById("form").setAttribute("action","/searchRecipe");
 document.getElementById("form").setAttribute("method","POST");
 document.getElementById("form").setAttribute("id","searchterm");
-}
+}-->
 
 
 </script>

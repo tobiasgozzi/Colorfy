@@ -63,7 +63,7 @@ extension Droplet {
         }
         authRoute.post("updatePassword", handler: benutzerController.updatePassword)
         
-        authRoute.post("searchRecipe", handler: rezeptsuche.searchInIE)
+//        authRoute.post("searchRecipe", handler: rezeptsuche.searchInIE)
         authRoute.get("insert-recipe", handler: rezepteingabeController.showFormPage)
         authRoute.post("modifyRecipe", handler: rezepteingabeController.showFormPage)
         
