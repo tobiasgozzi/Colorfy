@@ -28,7 +28,7 @@ class RezeptAusleseController {
         }
         
         print(rezept.farbnummer)
-        print(rezept.anteile.count)
+        print("\(rezept.anteile.count) nr of parts")
 
         var indexes : [Int] = []
         for i in 0 ... rezept.anteile.count {

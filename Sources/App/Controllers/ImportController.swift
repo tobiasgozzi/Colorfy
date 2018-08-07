@@ -53,11 +53,9 @@ class ImportController {
 
                             
                             for (leafindex, leaf) in leafes.enumerated() {
-
                                         if let name = leaf.name, let val = leaf.stringValue {
 //                                            print("\(leafindex) is current index with value \(name) and \(val)")
                                             switch name {
-                                                
                                             case "codiceTinta":
                                                 tempFartonCodice = val
                                                 //print("codice tinta \(val)")
@@ -74,22 +72,15 @@ class ImportController {
                                                 if val == "" || val == " " {
                                                     break;
                                                 }
-
-
                                                 if (leafes.count > (leafindex + 1) ) {
+                                                    
                                                     if let nextSibling = (leafes[leafindex + 1].child(at: 0)?.stringValue) {
                                                         if let floatVal = nextSibling.float {
-                                                            if parts[tempProdukt] != nil {
-
-                                                                tempProdukt = val
-                                                                parts[tempProdukt] = floatVal
-                                                            }
+                                                            tempProdukt = val
+                                                            parts[tempProdukt] = floatVal
                                                         }
                                                     }
-
                                                 }
-
-
 //                                                if let nextSibling = (leafes[leafindex + 1].child(at: 0)?.stringValue) {
 //                                                    if let floatVal = nextSibling.float {
 //                                                        print("level1")
@@ -105,7 +96,6 @@ class ImportController {
 
                                                 break;
                                             default:
-                                                
                                                 break;
                                             }
                                         }
@@ -114,8 +104,8 @@ class ImportController {
                             
                             var rohstoffanteile : Dictionary<Produkt, Float> = [:]
                             
-                            
                             for part in parts {
+                                
                                 if prodArray.contains(Produkt(produktID: part.key.trim(), name: "")) {
                                     
                                     let matchingProdArray = prodArray.filter { (prod) -> Bool in
@@ -135,29 +125,38 @@ class ImportController {
                             
                             
                             let rezept = Rezept(produkt: mainProduct, farbnummer: tempFartonCodice, farbton: "", anteil: [], kunde: "", collection: collectionName!)
-                            
+                            print("\(rezept.farbnummer) \(rezept.kollektion) \(rezept.produkt) instanciated")
+                            //check if recipe already exists
+                            if let existingRecipe = try Rezept.makeQuery().find(rezept.id) {
+                                print("\(existingRecipe.id?.wrapped.string!) already in database")
+                                continue singleProd
+                            }
                             
                             var teile : [Rohstoffanteil] = []
 
                             for i in rohstoffanteile {
                                 let anteil = Rohstoffanteil(prod: i.key, parts: i.value, id: rezept.id!)
                                 do {
+//                                    if let existingPart = try Rohstoffanteil.makeQuery().find(anteil.getRohstoffRezeptID.wrapped.string!) {
+//                                        print("\(existingPart.id?.wrapped.string!) part already in database")
+//                                    } else {
                                         try anteil.save()
+                                        teile.append(anteil)
+//                                    }
                                 } catch let error as NodeError {
                                     print("\(error.debugDescription) \(error.printable) prevented to save rohstoffanteil")
                                 }
                                 
-                                teile.append(anteil)
+                                
                             }
                             rezept.setRohstoffanteile = teile
                         
-                        
                             do {
-                                if let existingRecipe = try Rezept.makeQuery().find(rezept.id) {
-                                    print("\(existingRecipe.id?.wrapped) already in database")
-                                } else {
+//                                if let existingRecipe = try Rezept.makeQuery().find(rezept.id) {
+//                                    print("\(existingRecipe.id?.wrapped) already in database")
+//                                } else {
                                     try rezept.save()
-                                }
+//                                }
                                 
                             } catch let err as NodeError {
                                 print("\(err.debugDescription) \(err.printable) prevented to save recipe")

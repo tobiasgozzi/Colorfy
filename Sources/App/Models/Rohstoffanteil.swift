@@ -19,7 +19,7 @@ class Rohstoffanteil : Model {
 //    private var _grundpreisEK: Float
 //    private var _grundpreisVK: Float
     let rezeptID: Identifier
-
+    let _id : Identifier?
     
     init(prod : Produkt, parts: Float, id : Identifier) {
         
@@ -30,6 +30,9 @@ class Rohstoffanteil : Model {
 //        self._grundpreisEK = prod.kosten
 //        self._grundpreisVK = prod.preis
         self.rezeptID = id
+        let newID = Identifier.string(prod.codex + id.wrapped.string!)
+        self._id = newID
+        self.id = newID
     }
 
     
@@ -48,6 +51,9 @@ class Rohstoffanteil : Model {
         get {
             return _produktID
         }
+    }
+    public var getRohstoffRezeptID: Identifier {
+        return _id!
     }
 
     
@@ -92,6 +98,7 @@ class Rohstoffanteil : Model {
 //        try row.set("vKPreis", _vKPreis)
         try row.set("produktID", _produktID)
         try row.set("rezeptID", rezeptID)
+        try row.set("_id", id)
         return row
     }
 
@@ -99,7 +106,7 @@ class Rohstoffanteil : Model {
         self._produkt = try row.get("produkt")
         self.rezeptID = try row.get("rezeptID")
         self._anteil = try row.get("anteil")
-
+        self._id = try row.get("_id")
         self._produktID = try row.get("produktID")
        
         //error lies here
@@ -118,7 +125,7 @@ class Rohstoffanteil : Model {
 extension Rohstoffanteil : Preparation {
     static func prepare(_ database: Database) throws {
         try database.create(self, closure: { (builder) in
-            //builder.id()
+            builder.id()
             builder.string("produkt")
             builder.string("produktID")
             builder.double("anteil")
