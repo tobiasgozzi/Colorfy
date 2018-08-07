@@ -69,8 +69,8 @@
         <option value="#(product.id)" name="#(product.id)" #equal(product.id, parts.produktID){selected}>#(product.name)</option>
     }
     </select>
-<label for="quantity#(offset)"></label>
-<input name="quantity#(offset)" id="quantity#(offset)" placeholder="900" type="number" value="#(parts.stringAnteil)">
+    <label for="quantity#(offset)"></label>
+    <input name="quantity#(offset)" id="quantity#(offset)" placeholder="900" type="number" step="any" value="#(parts.stringAnteil)">
     <br>
 }
 } ##else() {
@@ -82,7 +82,7 @@
     }
     </select>
     <label for="quantity1"></label>
-    <input name="quantity1" id="quantity1" placeholder="900" type="text">
+    <input name="quantity1" id="quantity1" placeholder="900" step="any" type="text">
     <br>
 
 
@@ -94,7 +94,7 @@
         }
     </select>
     <label for="quantity2"></label>
-    <input name="quantity2" id="quantity2" placeholder="900" type="text">
+    <input name="quantity2" id="quantity2" placeholder="900" step="any" type="text">
     <br>
 
     <label for="product3">Prodotto base</label>
@@ -105,7 +105,7 @@
         }
     </select>
     <label for="quantity3"></label>
-    <input name="quantity3" id="quantity3" placeholder="900" type="text">
+    <input name="quantity3" id="quantity3" placeholder="900" step="any" type="text">
     <br>
 
     <label for="product4">Prodotto base</label>
@@ -116,7 +116,7 @@
         }
     </select>
     <label for="quantity4"></label>
-    <input name="quantity4" id="quantity4" placeholder="900" type="text">
+    <input name="quantity4" id="quantity4" placeholder="900" step="any" type="text">
     <br>
 
     <label for="product5">Prodotto base</label>
@@ -127,7 +127,7 @@
         }
     </select>
     <label for="quantity5"></label>
-    <input name="quantity5" id="quantity5" placeholder="900" type="text">
+    <input name="quantity5" id="quantity5" placeholder="900" step="any" type="text">
     <br>
 
     <label for="product6">Prodotto base</label>
@@ -138,7 +138,7 @@
         }
     </select>
     <label for="quantity6"></label>
-    <input name="quantity6" id="quantity6" placeholder="900" type="text">
+    <input name="quantity6" id="quantity6" placeholder="900" step="any" type="text">
     <br>
 }
 
