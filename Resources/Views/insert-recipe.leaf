@@ -13,13 +13,17 @@
     <label for="collection">Seleziona collezione</label>
     <select class="form-control" id="collection" name="collection" >
         <option value="">--selezionare una voce--</option>
-        <option value="RAL" #equal(modifyProduct.kollektion, "RAL"){selected}>RAL</option>
-        <option value="NCS" #equal(modifyProduct.kollektion, "NCS"){selected}>NCS</option>
+        #equal(benutzer.benutzerrechte, "administrator"){
+            <option value="RAL" #equal(modifyProduct.kollektion, "RAL"){selected}>RAL</option>
+            <option value="NCS" #equal(modifyProduct.kollektion, "NCS"){selected}>NCS</option>
+        }
         <option value="SF" #equal(modifyProduct.kollektion, "SF"){selected}>SF</option>
-        <option value="SF-B" #equal(modifyProduct.kollektion, "SF-B"){selected}>SF-B</option>
+        <option value="SF-G" #equal(modifyProduct.kollektion, "SF-G"){selected}>SF-G</option>
         <option value="SF-L" #equal(modifyProduct.kollektion, "SF-L"){selected}>SF-L</option>
-        <option value="SIKKENS-3031" #equal(modifyProduct.kollektion, "SIKKENS-3031"){selected}>SIKKENS-3031</option>
-        <option value="SIKKENS-5051" #equal(modifyProduct.kollektion, "SIKKENS-5051"){selected}>SIKKENS-5051</option>
+        #equal(benutzer.benutzerrechte, "administrator"){
+            <option value="SIKKENS-3031" #equal(modifyProduct.kollektion, "SIKKENS-3031"){selected}>SIKKENS-3031</option>
+            <option value="SIKKENS-5051" #equal(modifyProduct.kollektion, "SIKKENS-5051"){selected}>SIKKENS-5051</option>
+        }
     </select>
 </div>
 

@@ -54,7 +54,7 @@ class RezeptsucheController {
             
 //            Rezept.database!.query(Rezept).filter()
             
-            let query = try Rezept.makeQuery().filter("farbnummer", .contains, input)
+            let query = try Rezept.makeQuery().filter("farbnummer", .contains, input.uppercased())
 //            if let query = try Rezept.makeQuery().filter("field", .contains, input) {
             let count = try query.count()
             if (count > 0) {

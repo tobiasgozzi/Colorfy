@@ -10,6 +10,10 @@
     #equal(benutzer.benutzerrechte, "laboratorio") {
     <a href="/insert-recipe">Crea ricetta nuova</a>
     }
+    #equal(benutzer.benutzerrechte, "punto-vendita") {
+    <a href="/insert-recipe">Crea ricetta nuova</a>
+    }
+
     <a id="navUser" href="/userInfo">Utente</a>
 
 </nav>

@@ -11,7 +11,7 @@ function RecipeFinder(host) {
                       
                       var term = document.getElementById("quantityInput").value;
 
-                      if (isNaN(parseInt(term))) {
+                      if (!(isNaN(parseInt(term)))) {
                         var elems = document.querySelectorAll('.quantityField');
                         var values = Array.prototype.map.call(elems, function(obj) {
                           return obj.getAttribute("value");
