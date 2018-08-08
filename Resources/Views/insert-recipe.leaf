@@ -11,7 +11,7 @@
 
 <div class="form-group mt-3">
     <label for="collection">Seleziona collezione</label>
-    <select class="form-control" id="collection" name="collection" >
+    <select class="form-control" id="collection" name="collection" required>
         <option value="">--selezionare una voce--</option>
         #equal(benutzer.benutzerrechte, "administrator"){
             <option value="RAL" #equal(modifyProduct.kollektion, "RAL"){selected}>RAL</option>
@@ -33,7 +33,7 @@
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Codice tinta</span>
   </div>
-<input type="text" class="form-control" name="tinta" placeholder="p.es. 0041-0718" aria-label="p.es. 0041-0718" aria-describesby="basic-addon1" value="#(modifyProduct.farbnummer)">
+<input type="text" class="form-control" name="tinta" placeholder="p.es. 0041-0718" aria-label="p.es. 0041-0718" aria-describesby="basic-addon1" value="#(modifyProduct.farbnummer)" required>
 </div>
 
 
@@ -86,7 +86,7 @@
     }
     </select>
     <label for="quantity1"></label>
-    <input name="quantity1" id="quantity1" placeholder="900" step="any" type="text">
+    <input name="quantity1" id="quantity1" placeholder="900" step="any" type="text" required>
     <br>
 
 
@@ -161,6 +161,15 @@
 </div>
 </div>
 #embed("footer")
+<script type="text/javascript">
+function stopRKey(event) {
+var event = (event) ? event : ((event) ? event : null);
+var node = (event.target) ? event.target : ((event.scrElement) ? event.srcElement : null);
+if ((event.keyCode == 13) && (node.type=="text" || node.type=="number")) {return false;}
+}
+document.onkeypress = stopRKey;
+</script>
+
 </body>
 </html>
 

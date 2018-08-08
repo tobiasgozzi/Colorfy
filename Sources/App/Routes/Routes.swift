@@ -82,8 +82,18 @@ extension Droplet {
 //                return
 //            }
 
+//            var timer = Timer.init(timeInterval: TimeInterval.init(1), target: self, selector: Selector("sendPing"), userInfo: nil, repeats: true)
+//            func sendPing() {
+//                do {
+//                    try ws.ping()
+//                    print("ping sent")
+//                } catch let e {
+//                    print(e)
+//                }
+//            }
+//            timer.fire()
             
-
+            
                 //            try ws.send("ws sends")
                 
                 ws.onText = { ws, text in

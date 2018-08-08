@@ -20,7 +20,7 @@ function RecipeFinder(host) {
                       
                         var quantityFieldString = Array.prototype.map.call(values, function(obj) {
                           var val = parseFloat(obj);
-                          if (!(Number.isNaN(val))) {
+                          if (!(isNaN(val))) {
                             var factor = parseFloat(term)/1000;
                             val *= factor;
                           }
