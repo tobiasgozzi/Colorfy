@@ -16,9 +16,9 @@ class Rezept: Model {
     //var typ : Rezepttyp
     var kunde: String
 //    var aufbau : String
-//    var notiz :String
+    var notiz :String
     
-    init(produkt : String, farbnummer : String, farbton : String, anteil : [Rohstoffanteil],/* typ: Rezepttyp,*/ kunde: String, collection: String ) {
+    init(produkt : String, farbnummer : String, farbton : String, anteil : [Rohstoffanteil],/* typ: Rezepttyp,*/ kunde: String, collection: String, note: String ) {
         
         let id = collection + produkt.replacingOccurrences(of: " ", with: "_") + farbnummer.replacingOccurrences(of: " ", with: "_")
         self.id = Identifier.string(id.replacingOccurrences(of: ".", with: "-"))
@@ -29,7 +29,7 @@ class Rezept: Model {
 
         var kostenKalk: Float = 0.0
         var preisKalk: Float = 0.0
-
+        self.notiz = note
 //        do {
 //            print("about to fetch Produkts")
 //            let products = try Produkt.makeQuery().all()
@@ -118,6 +118,7 @@ class Rezept: Model {
         self.anteile = try row.get("anteil")
 //        self.typ = try row.get("typ")
         self.kunde = try row.get("kunde")
+        self.notiz = try row.get("notiz")
     }
     
     
@@ -135,7 +136,8 @@ class Rezept: Model {
 //        try row.set("typ", typ)
         try row.set("anteil", anteile)
         try row.set("kunde", kunde)
-
+        try row.set("notiz", notiz)
+        
         return row
     }
     
@@ -155,6 +157,7 @@ extension Rezept: Preparation {
             builder.string("kunde")
             builder.string("produkt")
             builder.custom("anteil", type: "[Rohstoffanteil]")
+            builder.string("notiz")
 //            builder.custom("typ", type: "Rezepttyp")
 
         }
@@ -181,6 +184,7 @@ extension Rezept: NodeRepresentable {
         try node.set("kollektion", kollektion)
 //        try node.set("typ", typ)
         try node.set("anteile", anteile)
+        try node.set("notiz", notiz)
         
         return node
     }

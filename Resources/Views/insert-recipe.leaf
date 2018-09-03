@@ -13,14 +13,14 @@
     <label for="collection">Seleziona collezione</label>
     <select class="form-control" id="collection" name="collection" required>
         <option value="">--selezionare una voce--</option>
-        #equal(benutzer.benutzerrechte, "administrator"){
+        #equal(benutzer.benutzerrechte, "aministratore"){
             <option value="RAL" #equal(modifyProduct.kollektion, "RAL"){selected}>RAL</option>
             <option value="NCS" #equal(modifyProduct.kollektion, "NCS"){selected}>NCS</option>
         }
         <option value="SF" #equal(modifyProduct.kollektion, "SF"){selected}>SF</option>
         <option value="SF-G" #equal(modifyProduct.kollektion, "SF-G"){selected}>SF-G</option>
         <option value="SF-L" #equal(modifyProduct.kollektion, "SF-L"){selected}>SF-L</option>
-        #equal(benutzer.benutzerrechte, "administrator"){
+        #equal(benutzer.benutzerrechte, "aministratore"){
             <option value="SIKKENS-3031" #equal(modifyProduct.kollektion, "SIKKENS-3031"){selected}>SIKKENS-3031</option>
             <option value="SIKKENS-5051" #equal(modifyProduct.kollektion, "SIKKENS-5051"){selected}>SIKKENS-5051</option>
         }
@@ -67,7 +67,7 @@
 
 #if(updateMode){
 #loop(modifyParts, "parts"){
-    <label for="product">Prodotto base</label>
+    <label for="product#(offset)">Prodotto base</label>
     <select name="product#(offset)" id="product#(offset)">
     #loop(products, "product"){
         <option value="#(product.id)" name="#(product.id)" #equal(product.id, parts.produktID){selected}>#(product.name)</option>
@@ -76,7 +76,22 @@
     <label for="quantity#(offset)"></label>
     <input name="quantity#(offset)" id="quantity#(offset)" placeholder="900" type="number" step="any" value="#(parts.stringAnteil)">
     <br>
+
 }
+#loop(complementaryEmptyParts,"complementaryPartNr") {
+    <label for="product#(complementaryPartNr)">Prodotto base</label>
+    <select name="product#(complementaryPartNr)" id="product#(complementaryPartNr)">
+    <option value="">--selezionare una voce--</option>
+    #loop(products, "product"){
+    <option value="#(product.id)" name="#(product.id)" >#(product.name)</option>
+    }
+    </select>
+    <label for="quantity#(complementaryPartNr)"></label>
+    <input name="quantity#(complementaryPartNr)" id="quantity#(complementaryPartNr)" placeholder="900" step="any" type="text">
+    <br>
+
+}
+
 } ##else() {
     <label for="product1">Prodotto base</label>
     <select name="product1" id="product1">
@@ -150,8 +165,16 @@
     <div class="input-group-prepend">
         <span class="input-group-text" id="inputCliente">Cliente</span>
     </div>
-    <input type="text" class="form-control" placeholder="cliente" name="cliente" aria-label="cliente" aria-describedby="inputCliente">
+    <input type="text" class="form-control" placeholder="cliente" name="cliente" aria-label="cliente" value="#(modifyProduct.kunde)" aria-describedby="inputCliente">
 </div>
+
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="notiz">Nota</span>
+</div>
+<input type="text" class="form-control" placeholder="nota" name="notiz" value="#(modifyProduct.notiz)" aria-label="cliente" aria-describedby="notiz">
+</div>
+
 
 <br>
 <br>

@@ -61,11 +61,18 @@ class RezeptEingabeController {
             indexes.append(ind)
         }
         
+        var complementoryIndexes : [Int] = []
+        if (indexes.count < 6) {
+            for i : Int in indexes.count..<6 {
+                complementoryIndexes.append(i+1)
+            }
+        }
+        
         let sortedAnteile = rezeptPassedAsParam.anteile.sorted { (rl, rr) -> Bool in
             return rl.produkt > rr.produkt
         }
         
-        return try drop.view.make("insert-recipe",["products":productsArray, "benutzer" : user, "modifyProduct" : rezeptPassedAsParam, "updateMode" : true, "modifyParts" : sortedAnteile, "partIndex" : indexes])
+        return try drop.view.make("insert-recipe",["products":productsArray, "benutzer" : user, "modifyProduct" : rezeptPassedAsParam, "updateMode" : true, "modifyParts" : sortedAnteile, "partIndex" : indexes, "complementaryEmptyParts" : complementoryIndexes])
     }
     
     func elaborateNewRecipe(_ req :Request) throws -> ResponseRepresentable {
@@ -77,6 +84,14 @@ class RezeptEingabeController {
                 print("no tinta found")
                 return try drop.view.make("insert-recipe")
             }
+            
+            //replace special characters
+            var newColorName = colorName
+            for i in "[/<>\\+°^?=()&]" {
+                newColorName = newColorName.replacingOccurrences(of: "\(i)", with: "-")
+            }
+            
+            print("\(newColorName) sent from client")
             
             guard let collection = data["collection"]?.string else {
                 print("no collection found")
@@ -91,7 +106,9 @@ class RezeptEingabeController {
             
             let colore = (data["selezioneColore"]?.string != nil) ? data["selezioneColore"]!.string! : ""
 
-            let rezept = Rezept(produkt: mainProduct , farbnummer: colorName, farbton: colore, anteil: [], kunde: cliente, collection: collection)
+            let notiz = (data["notiz"]?.string != nil) ? data["notiz"]!.string! : ""
+            
+            let rezept = Rezept(produkt: mainProduct , farbnummer: newColorName, farbton: colore, anteil: [], kunde: cliente, collection: collection, note: notiz)
             
             rezeptIDforRedirection = rezept.rezeptID
             
@@ -100,7 +117,7 @@ class RezeptEingabeController {
             for i in 1..<6 {
                 if let productLine = data["product\(i)"]?.string {
                     if let quantityLine = data["quantity\(i)"]?.float {
-                        print("\(productLine) \(quantityLine)")
+                        print("\(productLine) \(quantityLine) found")
                         
                         let currentProduct = Produkt(produktID: productLine, name: "")
                         

@@ -26,6 +26,8 @@
 
 <!-- create page to show all recipes of this client-->
 <p>Cliente: <a href="#">#(recipe.kunde)</a></p>
+<p>Nota: #(recipe.notiz)</a></p>
+
 </div>
 
 <form id="quantity" class="mb-5">

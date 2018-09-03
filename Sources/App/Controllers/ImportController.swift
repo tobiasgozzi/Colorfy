@@ -124,7 +124,7 @@ class ImportController {
                             }
                             
                             
-                            let rezept = Rezept(produkt: mainProduct, farbnummer: tempFartonCodice, farbton: "", anteil: [], kunde: "", collection: collectionName!)
+                            let rezept = Rezept(produkt: mainProduct, farbnummer: tempFartonCodice, farbton: "", anteil: [], kunde: "", collection: collectionName!, note: "")
                             print("\(rezept.farbnummer) \(rezept.kollektion) \(rezept.produkt) instanciated")
                             //check if recipe already exists
                             if let existingRecipe = try Rezept.makeQuery().find(rezept.id) {
