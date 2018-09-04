@@ -116,17 +116,21 @@ class RezeptEingabeController {
             
             for i in 1..<6 {
                 if let productLine = data["product\(i)"]?.string {
-                    if let quantityLine = data["quantity\(i)"]?.float {
-                        print("\(productLine) \(quantityLine) found")
+                    if let quantityLine = data["quantity\(i)"]?.string {
                         
-                        let currentProduct = Produkt(produktID: productLine, name: "")
+                        let preparedQuantity =  quantityLine.replacingOccurrences(of: ",", with: ".")
                         
-                        let partProduct = products.filter({ (prod) -> Bool in
-                            return prod.returnProductID() == productLine
-                        })[0]
-                        
-                        parts.append(Rohstoffanteil(prod: partProduct, parts: quantityLine, id: rezept.id!))
-                        
+                        if let parsedQuantity = preparedQuantity.float {
+                            print("\(productLine) \(parsedQuantity) found")
+                            
+                            let currentProduct = Produkt(produktID: productLine, name: "")
+                            
+                            let partProduct = products.filter({ (prod) -> Bool in
+                                return prod.returnProductID() == productLine
+                            })[0]
+                            
+                            parts.append(Rohstoffanteil(prod: partProduct, parts: parsedQuantity, id: rezept.id!))
+                        }
                     }
                 }
             }

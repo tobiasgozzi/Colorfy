@@ -67,6 +67,7 @@
 
 #if(updateMode){
 #loop(modifyParts, "parts"){
+<div class="partDiv">
     <label for="product#(offset)">Prodotto base</label>
     <select name="product#(offset)" id="product#(offset)">
     #loop(products, "product"){
@@ -76,9 +77,10 @@
     <label for="quantity#(offset)"></label>
     <input name="quantity#(offset)" id="quantity#(offset)" placeholder="900" type="number" step="any" value="#(parts.stringAnteil)">
     <br>
-
+</div>
 }
 #loop(complementaryEmptyParts,"complementaryPartNr") {
+<div class="partDiv">
     <label for="product#(complementaryPartNr)">Prodotto base</label>
     <select name="product#(complementaryPartNr)" id="product#(complementaryPartNr)">
     <option value="">--selezionare una voce--</option>
@@ -89,10 +91,11 @@
     <label for="quantity#(complementaryPartNr)"></label>
     <input name="quantity#(complementaryPartNr)" id="quantity#(complementaryPartNr)" placeholder="900" step="any" type="text">
     <br>
-
+</div>
 }
 
 } ##else() {
+<div class="partDiv">
     <label for="product1">Prodotto base</label>
     <select name="product1" id="product1">
     <option value="">--selezionare una voce--</option>
@@ -103,8 +106,8 @@
     <label for="quantity1"></label>
     <input name="quantity1" id="quantity1" placeholder="900" step="any" type="text" required>
     <br>
-
-
+</div>
+<div class="partDiv">
     <label for="product2">Prodotto base</label>
     <select name="product2" id="product2">
         <option value="">--selezionare una voce--</option>
@@ -115,7 +118,8 @@
     <label for="quantity2"></label>
     <input name="quantity2" id="quantity2" placeholder="900" step="any" type="text">
     <br>
-
+</div>
+<div class="partDiv">
     <label for="product3">Prodotto base</label>
     <select name="product3" id="product3">
         <option value="">--selezionare una voce--</option>
@@ -126,7 +130,8 @@
     <label for="quantity3"></label>
     <input name="quantity3" id="quantity3" placeholder="900" step="any" type="text">
     <br>
-
+</div>
+<div class="partDiv">
     <label for="product4">Prodotto base</label>
     <select name="product4" id="product4">
         <option value="">--selezionare una voce--</option>
@@ -137,7 +142,8 @@
     <label for="quantity4"></label>
     <input name="quantity4" id="quantity4" placeholder="900" step="any" type="text">
     <br>
-
+</div>
+<div class="partDiv">
     <label for="product5">Prodotto base</label>
     <select name="product5" id="product5">
         <option value="">--selezionare una voce--</option>
@@ -148,7 +154,8 @@
     <label for="quantity5"></label>
     <input name="quantity5" id="quantity5" placeholder="900" step="any" type="text">
     <br>
-
+</div>
+<div class="partDiv">
     <label for="product6">Prodotto base</label>
     <select name="product6" id="product6">
         <option value="">--selezionare una voce--</option>
@@ -159,6 +166,7 @@
     <label for="quantity6"></label>
     <input name="quantity6" id="quantity6" placeholder="900" step="any" type="text">
     <br>
+</div>
 }
 
 <div class="input-group mb-3">

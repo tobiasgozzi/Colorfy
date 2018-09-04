@@ -1,9 +1,18 @@
-@media (min-width: 576px) {
+@media (max-width: 576px) {
     input {
         width:100%;
     }
     .btn {
         width:100%;
+    }
+    .partDiv {
+        margin-bottom:15px;
+        margin-top:15px;
+    }
+}
+@media (min-width: 577px) {
+    .partDiv {
+        margin-bottom:25px;
     }
 }
 
@@ -107,6 +116,7 @@ div.container {
     padding-bottom:50px;
 }
 
+
 nav {
     /*background-color: #50D0FE;
     color: #F2F2F2;
@@ -164,3 +174,5 @@ fieldset {
     line-height:40px;
     background-color:white;
 }
+
+
