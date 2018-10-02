@@ -31,7 +31,7 @@
 </div>
 
 <form id="quantity" class="mb-5">
-<input name="quantity" id="quantityInput" placeholder="Quantità in grammi" "type="number">
+<input name="quantity" id="quantityInput" placeholder="Quantità in kg" "type="number">
 <button type="submit" class="btn btn-primary mt-2 mb-2" value="submit">Ricalcola</button>
 </form>
 

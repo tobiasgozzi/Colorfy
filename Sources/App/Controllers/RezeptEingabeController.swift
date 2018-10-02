@@ -102,7 +102,7 @@ class RezeptEingabeController {
                 print("no product 1 found")
                 return try drop.view.make("insert-recipe")
             }
-            let cliente = (data["cliente"]?.string != nil) ? data["cliente"]!.string! : ""
+            let cliente = (data["cliente"]?.string != nil) ? data["cliente"]!.string!.capitalizingFirstLetter() : ""
             
             let colore = (data["selezioneColore"]?.string != nil) ? data["selezioneColore"]!.string! : ""
 

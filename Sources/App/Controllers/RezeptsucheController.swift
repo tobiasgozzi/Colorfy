@@ -53,12 +53,18 @@ class RezeptsucheController {
         do {
             
 //            Rezept.database!.query(Rezept).filter()
-            
-            let query = try Rezept.makeQuery().filter("farbnummer", .contains, input.uppercased())
+ 
+//            let query = try Rezept.makeQuery().filter("farbnummer", .contains, input.uppercased())
+            let query = try Rezept.makeQuery().or({ (orQuery) in
+                try orQuery.filter("kunde", .contains, input.lowercased().capitalizingFirstLetter())
+                try orQuery.filter("farbnummer", .contains, input.replacingOccurrences(of: "/", with: "-", options: String.CompareOptions.caseInsensitive, range: nil).uppercased())
+            })
+
+
 //            if let query = try Rezept.makeQuery().filter("field", .contains, input) {
             let count = try query.count()
             if (count > 0) {
-                let queryProducts = try Produkt.makeQuery().all()
+                _ = try Produkt.makeQuery().all()
 
                 var queryFetch : [Rezept] = []
                 
