@@ -62,8 +62,8 @@ class RezeptEingabeController {
         }
         
         var complementoryIndexes : [Int] = []
-        if (indexes.count < 6) {
-            for i : Int in indexes.count..<6 {
+        if (indexes.count < 11) {
+            for i : Int in indexes.count..<11 {
                 complementoryIndexes.append(i+1)
             }
         }
@@ -114,7 +114,7 @@ class RezeptEingabeController {
             
             var parts : [Rohstoffanteil] = []
             
-            for i in 1..<6 {
+            for i in 1..<11 {
                 if let productLine = data["product\(i)"]?.string {
                     if let quantityLine = data["quantity\(i)"]?.string {
                         

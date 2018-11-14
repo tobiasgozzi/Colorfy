@@ -167,6 +167,55 @@
     <input name="quantity6" id="quantity6" placeholder="900" step="any" type="text">
     <br>
 </div>
+<div class="partDiv">
+<label for="product7">Prodotto base</label>
+<select name="product7" id="product7">
+<option value="">--selezionare una voce--</option>
+#loop(products, "product"){
+<option value="#(product.id)" name="#(product.id)" >#(product.name)</option>
+}
+</select>
+<label for="quantity7"></label>
+<input name="quantity7" id="quantity6" placeholder="900" step="any" type="text">
+<br>
+</div>
+<div class="partDiv">
+<label for="product8">Prodotto base</label>
+<select name="product8" id="product8">
+<option value="">--selezionare una voce--</option>
+#loop(products, "product"){
+<option value="#(product.id)" name="#(product.id)" >#(product.name)</option>
+}
+</select>
+<label for="quantity8"></label>
+<input name="quantity8" id="quantity6" placeholder="900" step="any" type="text">
+<br>
+</div>
+<div class="partDiv">
+<label for="product9">Prodotto base</label>
+<select name="product9" id="product9">
+<option value="">--selezionare una voce--</option>
+#loop(products, "product"){
+<option value="#(product.id)" name="#(product.id)" >#(product.name)</option>
+}
+</select>
+<label for="quantity9"></label>
+<input name="quantity9" id="quantity6" placeholder="900" step="any" type="text">
+<br>
+</div>
+<div class="partDiv">
+<label for="product10">Prodotto base</label>
+<select name="product10" id="product10">
+<option value="">--selezionare una voce--</option>
+#loop(products, "product"){
+<option value="#(product.id)" name="#(product.id)" >#(product.name)</option>
+}
+</select>
+<label for="quantity10"></label>
+<input name="quantity10" id="quantity6" placeholder="900" step="any" type="text">
+<br>
+</div>
+
 }
 
 <div class="input-group mb-3">
